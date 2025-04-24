@@ -31,8 +31,8 @@ public class Trip_Plan_Activity extends BaseActivity {
     private Button confirm, returnBack, chooseFlight, chooseHotel, departureDateButton, returnDateButton;
     private TextView flightText, hotelText;
     private EditText tripNameEditText;
-    HotelItem hotel;
-    Flight flight;
+    private HotelItem hotel;
+    private Flight flight;
     private String departureDate, returnDate;
 
     @Override

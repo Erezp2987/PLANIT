@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
 import com.erez_p.tashtit.ADPTERS.FlightAdapter;
 import com.erez_p.tashtit.R;
+import com.erez_p.viewmodel.FlightViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Flight_Activity extends BaseActivity {
+    private FlightViewModel flightViewModel;
     private EditText fromInput, toInput, dateInput, returnDateInput;
     private Button searchButton,switchActivitys;
     private RecyclerView recyclerView;
@@ -46,6 +49,7 @@ public class Flight_Activity extends BaseActivity {
         setContentView(R.layout.activity_flight);
 
         initializeViews();
+        setViewModel();
         setListeners();
     }
 
@@ -74,7 +78,8 @@ public class Flight_Activity extends BaseActivity {
 
     @Override
     protected void setViewModel() {
-
+        flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
+        flightViewModel.getAll();
     }
 
     public void setRecyclerView(List<Flight> allFlights)
@@ -106,6 +111,7 @@ public class Flight_Activity extends BaseActivity {
                 Intent intent= new Intent(Flight_Activity.this,Trip_Plan_Activity.class);
                 intent.putExtra("Flight",item);
                 setResult(100,intent);
+                flightViewModel.add(item);
                 finish();
                 return false;
             }
