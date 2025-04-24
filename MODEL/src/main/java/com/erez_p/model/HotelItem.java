@@ -8,19 +8,21 @@ import java.io.Serializable;
 public class HotelItem extends BaseEntity implements Serializable {
     private String name;
     private String price;
+    private String dateDeparture;
+    private String dateReturn;
     private String link;
     private Double longtitude;
     private Double latitude;
     private String description;
-    private boolean isSpecificHotel;// New flag to indicate if it's a specific hotel
 
-    // Constructor to initialize all fields
-    public HotelItem(String name, String price, String description,String link, boolean isSpecificHotel) {
+    public HotelItem(String name, String price, String link,Double longtitude,Double latitude,String dateDeparture, String dateReturn) {
         this.name = name;
-        this.price = price;
         this.link = link;
-        this.description = description;
-        this.isSpecificHotel = isSpecificHotel;
+        this.price = price;
+        this.longtitude=longtitude;
+        this.latitude=latitude;
+        this.dateDeparture = dateDeparture;
+        this.dateReturn = dateReturn;
     }
     public HotelItem(String name, String price, String link) {
         this.name = name;
@@ -39,6 +41,14 @@ public class HotelItem extends BaseEntity implements Serializable {
         this.link = link;
         this.longtitude=longtitude;
         this.latitude=latitude;
+    }
+    public HotelItem(String name, String link,Double longtitude,Double latitude,String dateDeparture, String dateReturn) {
+        this.name = name;
+        this.link = link;
+        this.longtitude=longtitude;
+        this.latitude=latitude;
+        this.dateDeparture = dateDeparture;
+        this.dateReturn = dateReturn;
     }
 
     // Getters
@@ -61,12 +71,15 @@ public class HotelItem extends BaseEntity implements Serializable {
     public String getLink() {
         return link;
     }
+    public String getDateDeparture() {
+        return dateDeparture;
+    }
+    public String getDateReturn() {
+        return dateReturn;
+    }
 
     public String getDescription() {
         return description;
     }
 
-    public boolean isSpecificHotel() {
-        return isSpecificHotel;
-    }
 }

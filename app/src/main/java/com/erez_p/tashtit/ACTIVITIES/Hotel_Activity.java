@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
 import com.erez_p.tashtit.ADPTERS.HotelAdapter;
 import com.erez_p.tashtit.R;
+import com.erez_p.viewmodel.HotelViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +38,14 @@ public class Hotel_Activity extends BaseActivity {
     private Button buttonSearch, returnButton;
     private RecyclerView recyclerViewHotels;
     private HotelAdapter hotelAdapter;
+    private HotelViewModel hotelViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel);
         initializeViews();
+        setViewModel();
         setListeners();
     }
 
@@ -72,7 +76,8 @@ public class Hotel_Activity extends BaseActivity {
 
     @Override
     protected void setViewModel() {
-
+        hotelViewModel = new ViewModelProvider(this).get(HotelViewModel.class);
+        hotelViewModel.getAll();
     }
 
     private void fetchHotels() {
@@ -99,6 +104,7 @@ public class Hotel_Activity extends BaseActivity {
                 Intent intent = new Intent(Hotel_Activity.this,Trip_Plan_Activity.class);
                 intent.putExtra("HotelItem",item);
                 setResult(200,intent);
+                hotelViewModel.add(item);
                 finish();
                 return false;
             }
@@ -136,7 +142,7 @@ public class Hotel_Activity extends BaseActivity {
                         for (Property brand : hotelResponse.getProperties()) {
                             String link = brand.getLink(); // Assuming API provides a link for brands
                             Log.d("LOngtitude+vvdvd:",""+brand.getCordinates().getLatitude()+" "+brand.getCordinates().getLongitude()+" ");
-                            hotelItems.add(new HotelItem(brand.getName(), brand.getRatePerNight().getLowest(),link,brand.getCordinates().getLongitude(), brand.getCordinates().getLatitude()));
+                            hotelItems.add(new HotelItem(brand.getName(), brand.getRatePerNight().getLowest(),link,brand.getCordinates().getLongitude(), brand.getCordinates().getLatitude(),editTextCheckIn.getText().toString(),editTextCheckOut.getText().toString()));
                         }
                     } else if (hotelResponse.getType() != null && hotelResponse.getType().equals("hotel")) {
                         Log.d("LOngtitude+vvdvd:", "" + hotelResponse.getCordinates().getLatitude() + " " + hotelResponse.getCordinates().getLongitude() + " ");
@@ -146,7 +152,9 @@ public class Hotel_Activity extends BaseActivity {
                                     hotelResponse.getRatePerNight().getLowest(),
                                     hotelResponse.getLink(),
                                     hotelResponse.getCordinates().getLongitude(),
-                                    hotelResponse.getCordinates().getLatitude()
+                                    hotelResponse.getCordinates().getLatitude(),
+                                    editTextCheckIn.getText().toString(),
+                                    editTextCheckOut.getText().toString()
                             ));
                         }
                         else{
@@ -154,7 +162,9 @@ public class Hotel_Activity extends BaseActivity {
                                     hotelResponse.getName(),
                                     hotelResponse.getLink(),
                                     hotelResponse.getCordinates().getLongitude(),
-                                    hotelResponse.getCordinates().getLatitude()
+                                    hotelResponse.getCordinates().getLatitude(),
+                                    editTextCheckIn.getText().toString(),
+                                    editTextCheckOut.getText().toString()
                             ));
                         }
                     }
