@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/main"
-    android:background="@android:color/white">
+    android:background="#E3EFD3">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#00BCD4"
+            android:background="@drawable/gradient_background"
             app:title="Flight Search"
             app:titleTextColor="@android:color/white" />
 
@@ -29,7 +29,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -39,7 +39,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
-                app:strokeColor="#00BCD4"
+                app:strokeColor="#688F71"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -53,8 +53,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:startIconDrawable="@android:drawable/ic_menu_mylocation"
-                        app:boxStrokeColor="#00BCD4"
-                        app:hintTextColor="#00BCD4"
+                        app:boxStrokeColor="#688F71"
+                        app:hintTextColor="#0D2B1D"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -62,6 +62,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="From"
+                            android:textColor="#0D2B1D"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,8 +71,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:startIconDrawable="@android:drawable/ic_menu_compass"
-                        app:boxStrokeColor="#00BCD4"
-                        app:hintTextColor="#00BCD4"
+                        app:boxStrokeColor="#688F71"
+                        app:hintTextColor="#0D2B1D"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -79,51 +80,27 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="To"
+                            android:textColor="#0D2B1D"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_marginBottom="8dp"
+                        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
+                        app:boxStrokeColor="#688F71"
+                        app:hintTextColor="#0D2B1D"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dateInput"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="4dp"
-                            app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-                            app:boxStrokeColor="#00BCD4"
-                            app:hintTextColor="#00BCD4"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/dateInput"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Departure"
-                                android:inputType="date" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="4dp"
-                            app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-                            app:boxStrokeColor="#00BCD4"
-                            app:hintTextColor="#00BCD4"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/returnDateInput"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Return"
-                                android:inputType="date" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
+                            android:hint="Departure Date"
+                            android:textColor="#0D2B1D"
+                            android:inputType="date" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/searchButton"
@@ -136,26 +113,37 @@
                         app:icon="@android:drawable/ic_menu_search"
                         app:iconGravity="textStart"
                         android:textSize="16sp"
-                        android:backgroundTint="#FFEB3B"
-                        android:textColor="#000000" />
+                        android:backgroundTint="#345635"
+                        android:textColor="#FFFFFF" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/resultsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Flight Results"
+                android:textColor="#0D2B1D"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:overScrollMode="never"
-                android:nestedScrollingEnabled="false"/>
+                android:background="#F5FAF0"
+                android:layout_marginBottom="16dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonHotel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="return"
+                android:text="Return"
                 android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#00BCD4"
+                android:backgroundTint="#688F71"
                 android:textColor="@android:color/white"
                 app:cornerRadius="8dp" />
 

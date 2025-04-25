@@ -176,18 +176,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="16dp"/>
 
-            <!-- Choose Flight Button -->
+            <!-- Changed text from "Choose Flight" to "Flight Departure" -->
             <Button
                 android:id="@+id/selectFlightButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Choose Flight"
+                android:text="Flight Departure"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#688F71"
                 android:layout_marginTop="4dp"
                 android:padding="10dp"
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/flightSelectionText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="16dp"/>
+
+            <!-- Added new button for return flight -->
+            <Button
+                android:id="@+id/selectReturnFlightButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Choose Return Flight"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#688F71"
+                android:layout_marginTop="12dp"
+                android:padding="10dp"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/selectFlightButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="16dp"/>
@@ -205,7 +221,7 @@
                 android:shadowRadius="2"
                 android:padding="8dp"
                 android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/selectFlightButton"
+                app:layout_constraintTop_toBottomOf="@id/selectReturnFlightButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="16dp"/>

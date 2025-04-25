@@ -24,10 +24,10 @@ public class UsersViewModel extends BaseViewModel <User, Users>{
         getAll(Query.Direction.ASCENDING);
     }
     public void getAll(Query.Direction direction) {
-        getAll(repository.getCollection().orderBy("name", direction));
+        getAll(repository.getCollection().orderBy("userName", direction));
     }
     public void getUserByEmail(String email)
     {
-        get(repository.getCollection().whereEqualTo("email",email));
+        get(repository.getCollection().whereEqualTo("userEmail",email));
     }
 }

@@ -18,22 +18,25 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.erez_p.model.Flight;
 import com.erez_p.model.HotelItem;
 import com.erez_p.model.Trip;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.R;
+import com.erez_p.viewmodel.TripsViewModel;
 
 import java.util.Calendar;
 
 public class Trip_Plan_Activity extends BaseActivity {
-    private Button confirm, returnBack, chooseFlight, chooseHotel, departureDateButton, returnDateButton;
+    private Button confirm, returnBack, chooseFlight, chooseHotel, departureDateButton, returnDateButton, returnFlightButton;
     private TextView flightText, hotelText;
     private EditText tripNameEditText;
     private HotelItem hotel;
-    private Flight flight;
+    private Flight flight ,returnFlight;
     private String departureDate, returnDate;
+    private TripsViewModel tripsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,7 @@ public class Trip_Plan_Activity extends BaseActivity {
         chooseFlight = findViewById(R.id.selectFlightButton);
         flightText = findViewById(R.id.flightSelectionText);
         hotelText = findViewById(R.id.hotelSelectionText);
-
+        returnFlightButton = findViewById(R.id.selectReturnFlightButton);
         // Initialize new UI elements
         tripNameEditText = findViewById(R.id.tripNameEditText);
         departureDateButton = findViewById(R.id.departureDateButton);
@@ -105,9 +108,12 @@ public class Trip_Plan_Activity extends BaseActivity {
                 if(flight!=null && hotel!=null)
                 {
                     // Create new Trip object with all the collected information
-                    // Trip newTrip = new Trip(tripName, departureDate, returnDate, flight, hotel);
-                    // Save or use the trip as needed
-
+                    Intent intent = getIntent();
+                    String userId = intent.getStringExtra("UserId");
+                    Trip newTrip = new Trip(tripName, departureDate, returnDate, flight.getIdFs(),returnFlight.getIdFs(), hotel.getIdFs(),userId);
+                    tripsViewModel.add(newTrip);
+                    Intent intent1 = new Intent(Trip_Plan_Activity.this, Home_Screen.class);
+                    startActivity(intent1);
                 }
                 else {
                     Toast.makeText(Trip_Plan_Activity.this, "Please select both flight and hotel", Toast.LENGTH_SHORT).show();
@@ -127,10 +133,18 @@ public class Trip_Plan_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Trip_Plan_Activity.this, Flight_Activity.class);
+                intent.putExtra("isReturnFlight", false);
                 resultLauncher.launch(intent);
             }
         });
-
+        returnFlightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trip_Plan_Activity.this, Flight_Activity.class);
+                intent.putExtra("isReturnFlight", true);
+                resultLauncher.launch(intent);
+            }
+        });
         // Set listeners for new date picker buttons
         departureDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +188,7 @@ public class Trip_Plan_Activity extends BaseActivity {
                 day
         );
 
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         // Set min date for return date picker if departure date is already selected
         if (!isDeparture && departureDate != null && !departureDate.isEmpty()) {
             try {
@@ -189,7 +204,6 @@ public class Trip_Plan_Activity extends BaseActivity {
                 e.printStackTrace();
             }
         }
-
         datePickerDialog.show();
     }
 
@@ -212,7 +226,23 @@ public class Trip_Plan_Activity extends BaseActivity {
                         Intent intent = result.getData();
                         flight = (Flight) intent.getSerializableExtra("Flight");
                         if (flight != null) {
-                            flightText.setText("Selected Flight: " + flight.getFlightNumber());
+                            if(returnFlight != null) {
+                                flightText.setText("Selected Flight: " + flight.getFlightNumber() + " and return flight: " + returnFlight.getFlightNumber());
+                            } else {
+                                flightText.setText("Selected Flight: " + flight.getFlightNumber());
+                            }
+                        }
+                    }
+                    if(result.getResultCode() == 300) {
+                        // flight
+                        Intent intent = result.getData();
+                        returnFlight = (Flight) intent.getSerializableExtra("Flight");
+                        if (returnFlight != null && flight != null) {
+                            flightText.setText("Selected Flight: " + flight.getFlightNumber() + " and return flight: " + returnFlight.getFlightNumber());
+                        } else {
+                            if (returnFlight != null) {
+                                flightText.setText("Selected Return Flight: " + returnFlight.getFlightNumber());
+                            }
                         }
                     }
                 }
@@ -222,6 +252,7 @@ public class Trip_Plan_Activity extends BaseActivity {
     @Override
     protected void setViewModel()
     {
-        // Your existing implementation
+        tripsViewModel = new ViewModelProvider(this).get(TripsViewModel.class);
+        tripsViewModel.getAll();
     }
 }

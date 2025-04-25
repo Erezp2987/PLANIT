@@ -1,5 +1,6 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,7 +27,9 @@ import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.FlightViewModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Flight_Activity extends BaseActivity {
     private FlightViewModel flightViewModel;
-    private EditText fromInput, toInput, dateInput, returnDateInput;
+    private EditText fromInput, toInput, dateInput;
     private Button searchButton,switchActivitys;
     private RecyclerView recyclerView;
     private FlightAdapter flightAdapter;
@@ -59,9 +62,9 @@ public class Flight_Activity extends BaseActivity {
         switchActivitys=findViewById(R.id.buttonHotel);
         toInput = findViewById(R.id.toInput);
         dateInput = findViewById(R.id.dateInput);
+        dateInput.setFocusable(false);
         searchButton = findViewById(R.id.searchButton);
         recyclerView = findViewById(R.id.recyclerView);
-        returnDateInput = findViewById(R.id.returnDateInput);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -74,12 +77,31 @@ public class Flight_Activity extends BaseActivity {
             }
         });
         searchButton.setOnClickListener(v -> searchFlights());
+        dateInput.setOnClickListener(v -> showDatePickerDialog());
     }
 
     @Override
     protected void setViewModel() {
         flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
         flightViewModel.getAll();
+    }
+    private void showDatePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    // Ensure 2-digit month and day format
+                    String formattedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay);
+                    dateInput.setText(formattedDate);
+                },
+                year, month, day
+        );
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
 
     public void setRecyclerView(List<Flight> allFlights)
@@ -110,8 +132,16 @@ public class Flight_Activity extends BaseActivity {
                 //מחיזרה טיסה
                 Intent intent= new Intent(Flight_Activity.this,Trip_Plan_Activity.class);
                 intent.putExtra("Flight",item);
-                setResult(100,intent);
                 flightViewModel.add(item);
+                Intent intent1 = getIntent();
+                boolean isReturnFlight = intent1.getBooleanExtra("isReturnFlight", false);
+                if(isReturnFlight)
+                {
+                    setResult(300,intent);
+                }
+                else{
+                    setResult(100,intent);
+                }
                 finish();
                 return false;
             }
@@ -136,8 +166,8 @@ public class Flight_Activity extends BaseActivity {
 
         FlightApiService service = retrofit.create(FlightApiService.class);
         Call<FlightResponse> call = service.getFlightInfo(fromInput.getText().toString(), toInput.getText().toString(),
-                dateInput.getText().toString(), returnDateInput.getText().toString(),
-                API_KEY, "google_flights", "en", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",1);
+                dateInput.getText().toString(),2,
+                API_KEY, "google_flights", "en", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",1,2);
 
         call.enqueue(new Callback<FlightResponse>() {
             @Override

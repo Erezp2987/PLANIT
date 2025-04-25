@@ -13,11 +13,12 @@ public interface FlightApiService {
             @Query("departure_id") String departureAirport,
             @Query("arrival_id") String arrivalAirport,
             @Query("outbound_date") String departureDate,
-            @Query("return_date") String returnDate,
+            @Query("type") int flightType,
             @Query("api_key") String apiKey,
             @Query("engine") String engine,
             @Query("hl") String hl,
             @Header("User-Agent") String userAgent,
-            @Query("stops") int stops
+            @Query("stops") int stops,
+            @Query("sort_by") int sortBy
     );
 }

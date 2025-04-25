@@ -27,6 +27,7 @@ import java.util.List;
 public class Login_Activity extends BaseActivity {
     TextInputEditText email,password;
     Button logIn, register;
+    Users user = new Users();
     private UsersViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class Login_Activity extends BaseActivity {
         password = findViewById(R.id.passwordEditText);
         logIn = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerviewChange);
+
     }
 
     @Override
@@ -60,25 +62,10 @@ public class Login_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login_Activity.this, Home_Screen.class);
-                startActivity(intent);
+               startActivity(intent);
                 String emailInput = email.getText().toString().trim(); // Get user input
+                String passwordInput = password.getText().toString().trim(); // Get user input
 
-                viewModel.getUserByEmail(emailInput); // Fetch user by email
-
-                viewModel.getLiveDataCollection().observe(Login_Activity.this, new Observer<List<User>>() {
-                    @Override
-                    public void onChanged(List<User> usersList) {
-//                        if (usersList != null && !usersList.isEmpty()) { // Check if user exists
-//                            User correctUser = usersList.get(0); // Get first matching user
-
-                            Intent intent = new Intent(Login_Activity.this, Home_Screen.class);
-//                            intent.putExtra("idUser", correctUser.getIdFs());
-                            startActivity(intent);
-//                        } else {
-//                            Toast.makeText(Login_Activity.this, "User not found", Toast.LENGTH_LONG).show();
-//                        }
-                    }
-                });
             }
         });
 
@@ -94,7 +81,16 @@ public class Login_Activity extends BaseActivity {
 
     @Override
     protected void setViewModel() {
-        viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
-        viewModel.getAll();
+//        viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
+//        viewModel.getAll();
+//        viewModel.getLiveDataCollection().observe(Login_Activity.this, new Observer<Users>() {
+//            @Override
+//            public void onChanged(Users usersList) {
+//                if(usersList!=null) {
+//                    user = usersList;
+//                    logIn.setEnabled(true);
+//                }
+//            }
+//        });
     }
 }

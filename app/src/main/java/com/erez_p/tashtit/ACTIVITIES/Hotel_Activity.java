@@ -1,5 +1,6 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.HotelViewModel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,12 +61,15 @@ public class Hotel_Activity extends BaseActivity {
         buttonSearch = findViewById(R.id.buttonSearch);
         recyclerViewHotels = findViewById(R.id.recyclerViewHotels);
         returnButton = findViewById(R.id.returnbutton);
-
+        editTextCheckIn.setFocusable(false);
+        editTextCheckOut.setFocusable(false);
         recyclerViewHotels.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void setListeners() {
+        editTextCheckIn.setOnClickListener(v -> showDatePickerDialog(editTextCheckIn));
+        editTextCheckOut.setOnClickListener(v -> showDatePickerDialog(editTextCheckOut));
         buttonSearch.setOnClickListener(view -> fetchHotels());
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +77,22 @@ public class Hotel_Activity extends BaseActivity {
                 finish();
             }
         });
+    }
+    private void showDatePickerDialog(EditText targetEditText) {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    String formattedDate = selectedYear + "-" +
+                            String.format("%02d", selectedMonth + 1) + "-" +
+                            String.format("%02d", selectedDay);
+                    targetEditText.setText(formattedDate);
+                }, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
 
     @Override
