@@ -20,9 +20,9 @@ public class UsersViewModel extends BaseViewModel <User, Users>{
     public UsersViewModel(Application application) {
         super(User.class,Users.class,application);
     }
-    public void getAll(){
-        getAll(Query.Direction.ASCENDING);
-    }
+//    public void getAll(){
+//        getAll(Query.Direction.ASCENDING);
+//    }
     public void getAll(Query.Direction direction) {
         getAll(repository.getCollection().orderBy("userName", direction));
     }

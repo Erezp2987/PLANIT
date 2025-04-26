@@ -109,7 +109,7 @@ public class Trip_Plan_Activity extends BaseActivity {
                 {
                     // Create new Trip object with all the collected information
                     Intent intent = getIntent();
-                    String userId = intent.getStringExtra("UserId");
+                    String userId = intent.getStringExtra("userId");
                     Trip newTrip = new Trip(tripName, departureDate, returnDate, flight.getIdFs(),returnFlight.getIdFs(), hotel.getIdFs(),userId);
                     tripsViewModel.add(newTrip);
                     Intent intent1 = new Intent(Trip_Plan_Activity.this, Home_Screen.class);

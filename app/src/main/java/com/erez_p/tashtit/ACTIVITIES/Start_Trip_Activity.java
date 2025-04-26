@@ -54,7 +54,10 @@ public class Start_Trip_Activity extends BaseActivity {
             @Override
             public void onClick(View v) 
             {
+                Intent intentFromLastActivity = getIntent();
+                String userId = intentFromLastActivity.getStringExtra("userId");
                 Intent intent = new Intent(Start_Trip_Activity.this,Trip_Plan_Activity.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

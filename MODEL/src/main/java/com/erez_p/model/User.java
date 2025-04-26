@@ -8,6 +8,8 @@ public class User extends BaseEntity implements Serializable {
     private String userName;
     private String userEmail;
     private String userPassword;
+    public User() {
+    }
     public User(String userName, String userEmail, String userPassword)
     {
         this.userName = userName;

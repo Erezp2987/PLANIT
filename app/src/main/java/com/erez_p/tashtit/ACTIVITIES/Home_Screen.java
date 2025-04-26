@@ -69,7 +69,7 @@ public class Home_Screen extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home_Screen.this,Start_Trip_Activity.class);
-                intent.putExtra("UserId",userId);
+                intent.putExtra("userId",userId);
                 startActivity(intent);
             }
         });
