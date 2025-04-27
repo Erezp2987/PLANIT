@@ -2,78 +2,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="12dp"
-    android:orientation="vertical"
-    android:background="#B2EBF2"
+    android:background="#E3EFD3"
     android:layout_margin="10dp"
     android:elevation="6dp"
-    android:radius="16dp">
+    android:gravity="center_vertical">
 
+    <!-- Airline Logo -->
+    <ImageView
+        android:id="@+id/airlineLogoImageView"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+    android:contentDescription="Airline Logo"
+    android:layout_marginEnd="12dp"
+    android:background="#FFFFFF"
+    android:padding="8dp"
+    android:elevation="2dp"/>
+
+    <!-- Details Section -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:background="#FFFFFF"
-        android:radius="16dp"
-        android:elevation="4dp">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/airlineTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Airline"
-            android:textSize="16sp"
-            android:textColor="#000000"
+            android:text="Airline Name"
+            android:textSize="18sp"
+            android:textColor="#0D2B1D"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/flightNumberTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flight No"
+            android:text="Flight No: 123"
             android:textSize="14sp"
-            android:textColor="#616161"/>
+            android:textColor="#345635"/>
 
         <TextView
             android:id="@+id/departureTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Departure"
+            android:text="Departure: City A"
             android:textSize="14sp"
-            android:textColor="#616161"/>
+            android:textColor="#345635"/>
 
         <TextView
             android:id="@+id/arrivalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arrival"
+            android:text="Arrival: City B"
             android:textSize="14sp"
-            android:textColor="#616161"/>
+            android:textColor="#345635"/>
 
         <TextView
             android:id="@+id/durationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duration"
+            android:text="Duration: 3h 45m"
             android:textSize="14sp"
-            android:textColor="#616161"/>
+            android:textColor="#345635"/>
 
         <TextView
             android:id="@+id/Class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Class"
+            android:text="Class: Economy"
             android:textSize="14sp"
-            android:textColor="#616161"/>
-
-        <TextView
-            android:id="@+id/priceTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Price: "
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="#FBC02D"/>
+            android:textColor="#345635"/>
     </LinearLayout>
+
+    <!-- Price Section -->
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$250"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#688F71"
+        android:layout_marginStart="12dp"/>
 </LinearLayout>

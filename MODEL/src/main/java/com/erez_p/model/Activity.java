@@ -8,21 +8,27 @@ public class Activity extends BaseEntity implements Serializable {
     private String tripID;
     private String activityName;
     private double activityPrice;
-    private String activityTicketUrl;
-    private String activityLocation;
-    private long activityDate;
+    private String activityDate;
     private long activityTime;
+    private long activityDuration;
 
-    public Activity(String tripID, String activityName, double activityPrice, String activityTicketUrl, String activityLocation, long activityDate, long activityTime) {
+    public Activity(String tripID, String activityName, double activityPrice, String activityDate, long activityTime,long activityDuration) {
         this.tripID=tripID;
         this.activityName = activityName;
         this.activityPrice = activityPrice;
-        this.activityTicketUrl = activityTicketUrl;
-        this.activityLocation = activityLocation;
         this.activityDate = activityDate;
         this.activityTime = activityTime;
+        this.activityDuration=activityDuration;
     }
     public String getTripID() { return tripID; }
+
+    public long getActivityDuration() {
+        return activityDuration;
+    }
+
+    public void setActivityDuration(long activityDuration) {
+        this.activityDuration = activityDuration;
+    }
 
     public String getActivityName() { return activityName; }
     public void setActivityName(String activityName) { this.activityName = activityName; }
@@ -30,14 +36,8 @@ public class Activity extends BaseEntity implements Serializable {
     public double getActivityPrice() { return activityPrice; }
     public void setActivityPrice(double activityPrice) { this.activityPrice = activityPrice; }
 
-    public String getActivityTicketUrl() { return activityTicketUrl; }
-    public void setActivityTicketUrl(String activityTicketUrl) { this.activityTicketUrl = activityTicketUrl; }
-
-    public String getActivityLocation() { return activityLocation; }
-    public void setActivityLocation(String activityLocation) { this.activityLocation = activityLocation; }
-
-    public long getActivityDate() { return activityDate; }
-    public void setActivityDate(long activityDate) { this.activityDate = activityDate; }
+    public String getActivityDate() { return activityDate; }
+    public void setActivityDate(String activityDate) { this.activityDate = activityDate; }
 
     public long getActivityTime() { return activityTime; }
     public void setActivityTime(long activityTime) { this.activityTime = activityTime; }

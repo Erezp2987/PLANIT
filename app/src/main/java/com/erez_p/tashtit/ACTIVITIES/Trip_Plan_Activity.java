@@ -30,8 +30,8 @@ import com.erez_p.viewmodel.TripsViewModel;
 import java.util.Calendar;
 
 public class Trip_Plan_Activity extends BaseActivity {
-    private Button confirm, returnBack, chooseFlight, chooseHotel;
-    private TextView flightText, hotelText;
+    private Button confirm, returnBack, chooseFlight, chooseHotel, chooseActivity;
+    private TextView flightText, hotelText, activityText;
     private String tripId;
 
     @Override
@@ -57,8 +57,11 @@ public class Trip_Plan_Activity extends BaseActivity {
         chooseFlight = findViewById(R.id.btnAddFlight);
         flightText = findViewById(R.id.flightsSelectedText);
         hotelText = findViewById(R.id.hotelsSelectedText);
+        activityText = findViewById(R.id.activitiesSelectedText);
+        chooseActivity = findViewById(R.id.btnAddActivity);
         Intent intent = getIntent();
         tripId = intent.getStringExtra("tripId");
+        activityText.setText("Selected Activities: ");
         hotelText.setText("Selected Hotel: ");
         flightText.setText("Selected Flight: ");
     }
@@ -107,6 +110,15 @@ public class Trip_Plan_Activity extends BaseActivity {
                 resultLauncher.launch(intent);
             }
         });
+        //ADD ACTIVITY TO TRIP
+        chooseActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trip_Plan_Activity.this, ActivityAddition_Activity.class);
+                intent.putExtra("tripId", tripId);
+                resultLauncher.launch(intent);
+            }
+        });
         // Set listeners for new date picker buttons
     }
 
@@ -131,6 +143,16 @@ public class Trip_Plan_Activity extends BaseActivity {
                         if (flightname != null) {
 
                                 flightText.setText(flightText.getText().toString()+" "+flightname);
+                        }
+                    }
+                    if(result.getResultCode() == 300)
+                    {
+                        // activity
+                        Intent intent = result.getData();
+                        String Activityname = intent.getStringExtra("Activity");
+                        if (Activityname != null) {
+
+                            activityText.setText(activityText.getText().toString()+" "+Activityname);
                         }
                     }
                 }

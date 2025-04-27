@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.erez_p.model.BestFlight;
 import com.erez_p.model.Flight;
 import com.erez_p.model.FlightResponse;
@@ -109,6 +111,7 @@ public class Flight_Activity extends BaseActivity {
         flightAdapter = new FlightAdapter(allFlights,
                 R.layout.item_flight,
                 holder -> {
+                    holder.putView("flightImage", holder.itemView.findViewById(R.id.airlineLogoImageView));
                     holder.putView("airline", holder.itemView.findViewById(R.id.airlineTextView));
                     holder.putView("flightNumber", holder.itemView.findViewById(R.id.flightNumberTextView));
                     holder.putView("departure", holder.itemView.findViewById(R.id.departureTextView));
@@ -118,6 +121,10 @@ public class Flight_Activity extends BaseActivity {
                     holder.putView("class", holder.itemView.findViewById(R.id.Class));
                 },
                 (holder, flight, position) -> {
+                    // Set the image using Glide or any other image loading library
+                    Glide.with(this)
+                            .load(flight.getAirlineLogo())
+                            .into((ImageView) holder.getView("flightImage"));
                     ((TextView) holder.getView("airline")).setText("Airline: " + flight.getAirline());
                     ((TextView) holder.getView("flightNumber")).setText("Flight No: " + flight.getFlightNumber());
                     ((TextView) holder.getView("departure")).setText("Departure: " + flight.getDepartureAirport().getName() + " at " + flight.getDepartureAirport().getTime());

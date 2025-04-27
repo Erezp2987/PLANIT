@@ -82,9 +82,9 @@ public class Home_Screen extends BaseActivity {
         viewModel.getLiveDataCollection().observe(Home_Screen.this, new Observer<Trips>() {
             @Override
             public void onChanged(Trips trips) {
-                Log.d("BULBUL", "onChanged: "+trips);
                adapter.setItems(trips);
             }});
+        Log.d("TAG", "setViewModel: "+userId);
         viewModel.getTripsByUserID(userId);//כאן הבעיה
     }
     private void setRecyclerView()
