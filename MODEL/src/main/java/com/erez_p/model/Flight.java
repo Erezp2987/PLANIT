@@ -39,7 +39,42 @@ public class Flight extends BaseEntity implements Serializable {
 
     @SerializedName("price")
     private int price;  // 💰 Add this field to get the price
-
+    // Add any other fields you need
+    private String tripId;
+    // Constructor
+    public Flight (Airport departureAirport, Airport arrivalAirport, int duration,
+                   String airplane, String airline, String airlineLogo,
+                   String travelClass, String flightNumber, String legroom,
+                   List<String> extensions, int price){
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
+        this.duration = duration;
+        this.airplane = airplane;
+        this.airline = airline;
+        this.airlineLogo = airlineLogo;
+        this.travelClass = travelClass;
+        this.flightNumber = flightNumber;
+        this.legroom = legroom;
+        this.extensions = extensions;
+        this.price = price;
+    }
+    public Flight (Airport departureAirport, Airport arrivalAirport, int duration,
+                   String airplane, String airline, String airlineLogo,
+                   String travelClass, String flightNumber, String legroom,
+                   List<String> extensions, int price,String tripId) {
+        this.departureAirport = departureAirport;
+        this.arrivalAirport = arrivalAirport;
+        this.duration = duration;
+        this.airplane = airplane;
+        this.airline = airline;
+        this.airlineLogo = airlineLogo;
+        this.travelClass = travelClass;
+        this.flightNumber = flightNumber;
+        this.legroom = legroom;
+        this.extensions = extensions;
+        this.price = price;
+        this.tripId=tripId;
+    }
     // Getters
     public Airport getDepartureAirport() {
         return departureAirport;

@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"/>
 
-    <!-- ScrollView for content -->
+    <!-- Scrollable content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -56,17 +56,15 @@
             android:layout_height="wrap_content"
             android:paddingBottom="24dp">
 
-            <!-- Trip Name Label -->
+            <!-- Flights Selected Text -->
             <TextView
-                android:id="@+id/tripNameLabel"
+                android:id="@+id/flightsSelectedText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Trip Name"
+                android:text="Flights Selected In Trip"
                 android:textColor="#0D2B1D"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:shadowColor="#0D2B1D"
-                android:shadowRadius="2"
                 android:padding="8dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -74,173 +72,53 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="16dp"/>
 
-            <!-- Trip Name Edit Text -->
-            <EditText
-                android:id="@+id/tripNameEditText"
+            <!-- Add Flight Button -->
+            <Button
+                android:id="@+id/btnAddFlight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Enter trip name"
-                android:textColorHint="#688F71"
-                android:textColor="#0D2B1D"
+                android:text="Add Flight"
+                android:textColor="#FFFFFF"
                 android:backgroundTint="#688F71"
                 android:padding="12dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/tripNameLabel"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/flightsSelectedText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"/>
 
-            <!-- Departure Date Label -->
+            <!-- Hotels Selected Text -->
             <TextView
-                android:id="@+id/departureDateLabel"
+                android:id="@+id/hotelsSelectedText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Departure Date"
+                android:text="Hotels Selected In Trip"
                 android:textColor="#0D2B1D"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:shadowColor="#0D2B1D"
-                android:shadowRadius="2"
                 android:padding="8dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/tripNameEditText"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/btnAddFlight"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="16dp"/>
 
-            <!-- Departure Date Button -->
+            <!-- Add Hotel Button -->
             <Button
-                android:id="@+id/departureDateButton"
+                android:id="@+id/btnAddHotel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Select Departure Date"
+                android:text="Add Hotel"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#688F71"
-                android:padding="10dp"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/departureDateLabel"
+                android:padding="12dp"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/hotelsSelectedText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Return Date Label -->
-            <TextView
-                android:id="@+id/returnDateLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Return Date"
-                android:textColor="#0D2B1D"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:shadowColor="#0D2B1D"
-                android:shadowRadius="2"
-                android:padding="8dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/departureDateButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Return Date Button -->
-            <Button
-                android:id="@+id/returnDateButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Select Return Date"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#688F71"
-                android:padding="10dp"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@id/returnDateLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Flight Selection Text -->
-            <TextView
-                android:id="@+id/flightSelectionText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Select Your Flight"
-                android:textColor="#0D2B1D"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:shadowColor="#0D2B1D"
-                android:shadowRadius="2"
-                android:padding="8dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/returnDateButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Changed text from "Choose Flight" to "Flight Departure" -->
-            <Button
-                android:id="@+id/selectFlightButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Flight Departure"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#688F71"
-                android:layout_marginTop="4dp"
-                android:padding="10dp"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/flightSelectionText"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Added new button for return flight -->
-            <Button
-                android:id="@+id/selectReturnFlightButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Choose Return Flight"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#688F71"
-                android:layout_marginTop="12dp"
-                android:padding="10dp"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/selectFlightButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Hotel Selection Text -->
-            <TextView
-                android:id="@+id/hotelSelectionText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Select Your Hotel"
-                android:textColor="#0D2B1D"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:shadowColor="#0D2B1D"
-                android:shadowRadius="2"
-                android:padding="8dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@id/selectReturnFlightButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
-
-            <!-- Choose Hotel Button -->
-            <Button
-                android:id="@+id/selectHotelButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Choose Hotel"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#345635"
-                android:layout_marginTop="4dp"
-                android:padding="10dp"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/hotelSelectionText"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"/>
 
             <!-- Confirm Button -->
             <Button
@@ -249,14 +127,14 @@
                 android:layout_height="wrap_content"
                 android:text="Confirm"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="#688F71"
-                android:padding="10dp"
-                android:textSize="14sp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/selectHotelButton"
+                android:backgroundTint="#345635"
+                android:padding="12dp"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/btnAddHotel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"/>
 
             <!-- Return Button -->
             <Button
@@ -266,13 +144,13 @@
                 android:text="Return"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#688F71"
-                android:padding="10dp"
-                android:textSize="14sp"
-                android:layout_marginTop="12dp"
+                android:padding="12dp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/confirmButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="16dp"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

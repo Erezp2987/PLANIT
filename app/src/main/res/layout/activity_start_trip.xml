@@ -58,6 +58,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Trip Name EditText -->
+    <EditText
+        android:id="@+id/etTripName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Trip Name"
+        android:backgroundTint="#688F71"
+        android:textColor="#000000"
+        android:textColorHint="#AAAAAA"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/btnTripSuggestions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Departure Date EditText -->
+    <EditText
+        android:id="@+id/etDepartureDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Select Departure Date"
+        android:focusable="false"
+        android:clickable="true"
+        android:backgroundTint="#688F71"
+        android:textColor="#000000"
+        android:textColorHint="#AAAAAA"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etTripName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Return Date EditText -->
+    <EditText
+        android:id="@+id/etReturnDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Select Return Date"
+        android:focusable="false"
+        android:clickable="true"
+        android:backgroundTint="#688F71"
+        android:textColor="#000000"
+        android:textColorHint="#AAAAAA"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etDepartureDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <!-- Plan Trip Button -->
     <Button
         android:id="@+id/btnPlanTrip"
@@ -70,7 +125,7 @@
         android:layout_marginTop="32dp"
         android:padding="16dp"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/btnTripSuggestions"
+        app:layout_constraintTop_toBottomOf="@id/etReturnDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

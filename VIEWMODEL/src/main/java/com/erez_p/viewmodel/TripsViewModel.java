@@ -32,6 +32,6 @@ public class TripsViewModel extends BaseViewModel<Trip, Trips> {
 
     // Optional: Add method to get trips by specific criteria
     public void getTripsByUserID(String userID) {
-        get(repository.getCollection().whereEqualTo("userID", userID));
+        get(repository.getCollection().whereEqualTo("userId", userID));
     }
 }

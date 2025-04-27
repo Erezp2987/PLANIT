@@ -122,10 +122,13 @@ public class Hotel_Activity extends BaseActivity {
             @Override
             public boolean onItemLongClick(HotelItem item, int position) {
                 //החזרת מלון
+                Intent intentGot = getIntent();
+                String tripId = intentGot.getStringExtra("tripId");
                 Intent intent = new Intent(Hotel_Activity.this,Trip_Plan_Activity.class);
-                intent.putExtra("HotelItem",item);
+                intent.putExtra("HotelItem",item.getName());
                 setResult(200,intent);
-                hotelViewModel.add(item);
+                HotelItem hotelFinal= new HotelItem(item.getName(),item.getPrice(),item.getLink(),item.getLongtitude(),item.getLatitude(),item.getDateDeparture(),item.getDateReturn(),tripId);
+                hotelViewModel.add(hotelFinal);
                 finish();
                 return false;
             }
@@ -150,7 +153,7 @@ public class Hotel_Activity extends BaseActivity {
         adapter.notifyDataSetChanged();
 
         SerpApiService service = RetrofitClient.getService();
-        Call<HotelResponse> call = service.getHotels("google_hotels", query, checkIn, checkOut, adults, maxPrice, "8", "e6030086b12c1c7c7fda68d5768fb563c679da80726e596b079e03ba0473c929");
+        Call<HotelResponse> call = service.getHotels("google_hotels", query, checkIn, checkOut, adults, maxPrice, "13", "e6030086b12c1c7c7fda68d5768fb563c679da80726e596b079e03ba0473c929");
 
         call.enqueue(new Callback<HotelResponse>() {
             @Override

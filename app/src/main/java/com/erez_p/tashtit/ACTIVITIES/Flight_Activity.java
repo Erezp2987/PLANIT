@@ -130,18 +130,16 @@ public class Flight_Activity extends BaseActivity {
             @Override
             public boolean onItemLongClick(Flight item, int position) {
                 //מחיזרה טיסה
+                Intent intentGot= getIntent();
+                String tripId = intentGot.getStringExtra("tripId");
                 Intent intent= new Intent(Flight_Activity.this,Trip_Plan_Activity.class);
-                intent.putExtra("Flight",item);
-                flightViewModel.add(item);
-                Intent intent1 = getIntent();
-                boolean isReturnFlight = intent1.getBooleanExtra("isReturnFlight", false);
-                if(isReturnFlight)
-                {
-                    setResult(300,intent);
-                }
-                else{
-                    setResult(100,intent);
-                }
+                intent.putExtra("Flight",item.getFlightNumber());
+                Flight finalFlight= new Flight(item.getDepartureAirport(),item.getArrivalAirport(),item.getDuration(),
+                        item.getAirplane(),item.getAirline(),item.getAirlineLogo(),
+                        item.getTravelClass(),item.getFlightNumber(),item.getLegroom(),
+                        item.getExtensions(),item.getPrice(),tripId);
+                flightViewModel.add(finalFlight);
+                setResult(100,intent);
                 finish();
                 return false;
             }

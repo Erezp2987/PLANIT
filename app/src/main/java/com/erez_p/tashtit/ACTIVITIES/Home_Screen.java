@@ -3,6 +3,7 @@ package com.erez_p.tashtit.ACTIVITIES;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -50,8 +51,8 @@ public class Home_Screen extends BaseActivity {
         });
         initializeViews();
         setListeners();
-        setViewModel();
         setRecyclerView();
+        setViewModel();
     }
 
     @Override
@@ -77,14 +78,14 @@ public class Home_Screen extends BaseActivity {
 
     @Override
     protected void setViewModel() {
-        viewModel = new ViewModelProvider(this).get(TripsViewModel.class);
-        viewModel.getTripsByUserID(userId);
-        viewModel.getLiveDataCollection().observe(this, new Observer<Trips>() {
+        viewModel = new ViewModelProvider(Home_Screen.this).get(TripsViewModel.class);
+        viewModel.getLiveDataCollection().observe(Home_Screen.this, new Observer<Trips>() {
             @Override
             public void onChanged(Trips trips) {
+                Log.d("BULBUL", "onChanged: "+trips);
                adapter.setItems(trips);
-               hideProgressDialog();
             }});
+        viewModel.getTripsByUserID(userId);//כאן הבעיה
     }
     private void setRecyclerView()
     {

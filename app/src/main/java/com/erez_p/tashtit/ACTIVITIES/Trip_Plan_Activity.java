@@ -30,13 +30,9 @@ import com.erez_p.viewmodel.TripsViewModel;
 import java.util.Calendar;
 
 public class Trip_Plan_Activity extends BaseActivity {
-    private Button confirm, returnBack, chooseFlight, chooseHotel, departureDateButton, returnDateButton, returnFlightButton;
+    private Button confirm, returnBack, chooseFlight, chooseHotel;
     private TextView flightText, hotelText;
-    private EditText tripNameEditText;
-    private HotelItem hotel;
-    private Flight flight ,returnFlight;
-    private String departureDate, returnDate;
-    private TripsViewModel tripsViewModel;
+    private String tripId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +53,14 @@ public class Trip_Plan_Activity extends BaseActivity {
     protected void initializeViews() {
         confirm = findViewById(R.id.confirmButton);
         returnBack = findViewById(R.id.returnButton);
-        chooseHotel = findViewById(R.id.selectHotelButton);
-        chooseFlight = findViewById(R.id.selectFlightButton);
-        flightText = findViewById(R.id.flightSelectionText);
-        hotelText = findViewById(R.id.hotelSelectionText);
-        returnFlightButton = findViewById(R.id.selectReturnFlightButton);
-        // Initialize new UI elements
-        tripNameEditText = findViewById(R.id.tripNameEditText);
-        departureDateButton = findViewById(R.id.departureDateButton);
-        returnDateButton = findViewById(R.id.returnDateButton);
+        chooseHotel = findViewById(R.id.btnAddHotel);
+        chooseFlight = findViewById(R.id.btnAddFlight);
+        flightText = findViewById(R.id.flightsSelectedText);
+        hotelText = findViewById(R.id.hotelsSelectedText);
+        Intent intent = getIntent();
+        tripId = intent.getStringExtra("tripId");
+        hotelText.setText("Selected Hotel: ");
+        flightText.setText("Selected Flight: ");
     }
 
     @Override
@@ -85,39 +80,13 @@ public class Trip_Plan_Activity extends BaseActivity {
                 finish();
             }
         });
-        //Confirm TRIP
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tripName = tripNameEditText.getText().toString().trim();
-                if (tripName.isEmpty()) {
-                    tripNameEditText.setError("Please enter a trip name");
-                    return;
-                }
-
-                if (departureDate == null || departureDate.isEmpty()) {
-                    Toast.makeText(Trip_Plan_Activity.this, "Please select a departure date", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (returnDate == null || returnDate.isEmpty()) {
-                    Toast.makeText(Trip_Plan_Activity.this, "Please select a return date", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if(flight!=null && hotel!=null)
-                {
                     // Create new Trip object with all the collected information
-                    Intent intent = getIntent();
-                    String userId = intent.getStringExtra("userId");
-                    Trip newTrip = new Trip(tripName, departureDate, returnDate, flight.getIdFs(),returnFlight.getIdFs(), hotel.getIdFs(),userId);
-                    tripsViewModel.add(newTrip);
                     Intent intent1 = new Intent(Trip_Plan_Activity.this, Home_Screen.class);
                     startActivity(intent1);
-                }
-                else {
-                    Toast.makeText(Trip_Plan_Activity.this, "Please select both flight and hotel", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         // ADD HOTEL TO TRIP
@@ -125,6 +94,7 @@ public class Trip_Plan_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Trip_Plan_Activity.this, Hotel_Activity.class);
+                intent.putExtra("tripId", tripId);
                 resultLauncher.launch(intent);
             }
         });
@@ -133,78 +103,11 @@ public class Trip_Plan_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Trip_Plan_Activity.this, Flight_Activity.class);
-                intent.putExtra("isReturnFlight", false);
-                resultLauncher.launch(intent);
-            }
-        });
-        returnFlightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Trip_Plan_Activity.this, Flight_Activity.class);
-                intent.putExtra("isReturnFlight", true);
+                intent.putExtra("tripId", tripId);
                 resultLauncher.launch(intent);
             }
         });
         // Set listeners for new date picker buttons
-        departureDateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(true);
-            }
-        });
-
-        returnDateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(false);
-            }
-        });
-    }
-
-    // Method to show date picker dialog
-    private void showDatePickerDialog(final boolean isDeparture) {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                        if (isDeparture) {
-                            departureDate = selectedDate;
-                            departureDateButton.setText("Departure: " + selectedDate);
-                        } else {
-                            returnDate = selectedDate;
-                            returnDateButton.setText("Return: " + selectedDate);
-                        }
-                    }
-                },
-                year,
-                month,
-                day
-        );
-
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-        // Set min date for return date picker if departure date is already selected
-        if (!isDeparture && departureDate != null && !departureDate.isEmpty()) {
-            try {
-                String[] dateParts = departureDate.split("/");
-                if (dateParts.length == 3) {
-                    Calendar minDate = Calendar.getInstance();
-                    minDate.set(Integer.parseInt(dateParts[2]),
-                            Integer.parseInt(dateParts[1]) - 1,
-                            Integer.parseInt(dateParts[0]));
-                    datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        datePickerDialog.show();
     }
 
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
@@ -215,34 +118,19 @@ public class Trip_Plan_Activity extends BaseActivity {
                     if (result.getResultCode() == 200) {
                         //hotel
                         Intent intent = result.getData();
-                        hotel = (HotelItem) intent.getSerializableExtra("HotelItem");
-                        if (hotel != null) {
-                            hotelText.setText("Selected Hotel: " + hotel.getName());
+                        String hotelname = intent.getStringExtra("HotelItem");
+                        if (hotelname != null) {
+                            hotelText.setText(hotelText.getText().toString() + " "+hotelname);
                         }
                     }
                     if(result.getResultCode() == 100)
                     {
                         // flight
                         Intent intent = result.getData();
-                        flight = (Flight) intent.getSerializableExtra("Flight");
-                        if (flight != null) {
-                            if(returnFlight != null) {
-                                flightText.setText("Selected Flight: " + flight.getFlightNumber() + " and return flight: " + returnFlight.getFlightNumber());
-                            } else {
-                                flightText.setText("Selected Flight: " + flight.getFlightNumber());
-                            }
-                        }
-                    }
-                    if(result.getResultCode() == 300) {
-                        // flight
-                        Intent intent = result.getData();
-                        returnFlight = (Flight) intent.getSerializableExtra("Flight");
-                        if (returnFlight != null && flight != null) {
-                            flightText.setText("Selected Flight: " + flight.getFlightNumber() + " and return flight: " + returnFlight.getFlightNumber());
-                        } else {
-                            if (returnFlight != null) {
-                                flightText.setText("Selected Return Flight: " + returnFlight.getFlightNumber());
-                            }
+                        String flightname = intent.getStringExtra("Flight");
+                        if (flightname != null) {
+
+                                flightText.setText(flightText.getText().toString()+" "+flightname);
                         }
                     }
                 }
@@ -252,7 +140,6 @@ public class Trip_Plan_Activity extends BaseActivity {
     @Override
     protected void setViewModel()
     {
-        tripsViewModel = new ViewModelProvider(this).get(TripsViewModel.class);
-        tripsViewModel.getAll();
+
     }
 }
