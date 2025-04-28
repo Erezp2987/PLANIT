@@ -185,7 +185,6 @@ public class Home_Screen extends BaseActivity {
             public void onItemClick(Trip item, int position) {
                 Intent intent = new Intent(Home_Screen.this, Trip_Show_Activity.class);
                 intent.putExtra("tripId", item.getIdFs());
-                intent.putExtra("userId", userId);
                 startActivity(intent);
                 finish();
             }
