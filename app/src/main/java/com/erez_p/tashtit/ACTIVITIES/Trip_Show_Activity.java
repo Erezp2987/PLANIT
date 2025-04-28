@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
+import com.erez_p.tashtit.ADPTERS.FinalFlightAdapter;
 import com.erez_p.tashtit.R;
 
 public class Trip_Show_Activity extends BaseActivity {
@@ -23,6 +24,7 @@ public class Trip_Show_Activity extends BaseActivity {
             rvActivities;
     Button btnDiscardChanges,
             btnSaveChanges;
+    FinalFlightAdapter flightsAdapter;
 
 
     @Override
