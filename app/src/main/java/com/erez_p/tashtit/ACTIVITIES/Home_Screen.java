@@ -180,6 +180,16 @@ public class Home_Screen extends BaseActivity {
 
             }
         });
+        adapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<Trip>() {
+            @Override
+            public void onItemClick(Trip item, int position) {
+                Intent intent = new Intent(Home_Screen.this, Trip_Show_Activity.class);
+                intent.putExtra("tripId", item.getIdFs());
+                intent.putExtra("userId", userId);
+                startActivity(intent);
+                finish();
+            }
+        });
         adapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<Trip>() {
             @Override
             public boolean onItemLongClick(Trip item, int position) {
@@ -214,7 +224,7 @@ public class Home_Screen extends BaseActivity {
                                         }
                                     }
                                 });
-
+                                //לא עובד השאר כן
                                 hotelViewModel.getLiveDataCollection().observe(Home_Screen.this, hotels -> {
                                     if (hotels != null) {
                                         for (int i = 0; i < hotels.size(); i++) {

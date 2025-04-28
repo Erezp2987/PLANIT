@@ -72,14 +72,6 @@ public class Trip_Plan_Activity extends BaseActivity {
         returnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(hotelText.getText()!=null && !hotelText.getText().toString().equals(""))
-                {
-                    //cancel after hotel selected
-                }
-                if(flightText.getText()!=null && !flightText.getText().toString().equals(""))
-                {
-                    //cancel after flight selected
-                }
                 finish();
             }
         });
