@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.erez_p.model.FinalHotel;
 import com.erez_p.model.HotelItem;
 import com.erez_p.model.HotelResponse;
 import com.erez_p.model.Property;
@@ -127,7 +128,7 @@ public class Hotel_Activity extends BaseActivity {
                 Intent intent = new Intent(Hotel_Activity.this,Trip_Plan_Activity.class);
                 intent.putExtra("HotelItem",item.getName());
                 setResult(200,intent);
-                HotelItem hotelFinal= new HotelItem(item.getName(),item.getPrice(),item.getLink(),item.getLongtitude(),item.getLatitude(),item.getDateDeparture(),item.getDateReturn(),tripId);
+                FinalHotel hotelFinal= new FinalHotel(item.getName(),item.getPrice(),item.getLink(),item.getLongtitude(),item.getLatitude(),item.getDateDeparture(),item.getDateReturn(),tripId);
                 hotelViewModel.add(hotelFinal);
                 finish();
                 return false;

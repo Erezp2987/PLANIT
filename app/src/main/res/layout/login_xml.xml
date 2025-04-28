@@ -8,6 +8,8 @@
     android:background="#FFFFFF"
     tools:context=".ACTIVITIES.Login_Activity">
 
+    <!-- Existing Views -->
+
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="120dp"

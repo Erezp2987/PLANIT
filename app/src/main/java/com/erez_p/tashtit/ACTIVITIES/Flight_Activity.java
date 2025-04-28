@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.erez_p.model.BestFlight;
+import com.erez_p.model.FinalFlight;
 import com.erez_p.model.Flight;
 import com.erez_p.model.FlightResponse;
 import com.erez_p.model.OtherFlight;
@@ -141,10 +142,9 @@ public class Flight_Activity extends BaseActivity {
                 String tripId = intentGot.getStringExtra("tripId");
                 Intent intent= new Intent(Flight_Activity.this,Trip_Plan_Activity.class);
                 intent.putExtra("Flight",item.getFlightNumber());
-                Flight finalFlight= new Flight(item.getDepartureAirport(),item.getArrivalAirport(),item.getDuration(),
-                        item.getAirplane(),item.getAirline(),item.getAirlineLogo(),
-                        item.getTravelClass(),item.getFlightNumber(),item.getLegroom(),
-                        item.getExtensions(),item.getPrice(),tripId);
+                FinalFlight finalFlight = new FinalFlight(item.getDepartureAirport().getName(), item.getArrivalAirport().getName(), item.getDuration(),
+                        item.getAirplane(), item.getAirline(), item.getAirlineLogo(), item.getTravelClass(), item.getFlightNumber(),
+                        item.getLegroom(), item.getPrice(), tripId, dateInput.getText().toString());
                 flightViewModel.add(finalFlight);
                 setResult(100,intent);
                 finish();

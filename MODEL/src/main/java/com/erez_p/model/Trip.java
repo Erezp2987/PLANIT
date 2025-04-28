@@ -12,16 +12,15 @@ public class Trip extends BaseEntity implements Serializable {
 
     public Trip() {
     }
-    public Trip(String name, String dateDeparture, String dateReturn) {
+    public Trip(String name, String dateDeparture, String dateReturn,String userId) {
         this.name = name;
         this.dateDeparture = dateDeparture;
         this.dateReturn = dateReturn;
+        this.userId = userId;
     }
-    public Trip(String name,String dateDeparture, String dateReturn,String userId) {
-        this.name = name;
-        this.dateDeparture = dateDeparture;
-        this.dateReturn = dateReturn;
-        this.userId=userId;
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getName() { return name; }
@@ -31,9 +30,6 @@ public class Trip extends BaseEntity implements Serializable {
     public String getDateDeparture() { return dateDeparture; }
     public void setDateDeparture(String dateDeparture) { this.dateDeparture = dateDeparture; }
 
-    public String getUserId() {
-        return userId;
-    }
     public String getDateReturn() { return dateReturn; }
     public void setDateReturn(String dateReturn) { this.dateReturn = dateReturn; }
 }

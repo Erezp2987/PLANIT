@@ -30,4 +30,12 @@ public class UsersViewModel extends BaseViewModel <User, Users>{
     {
         get(repository.getCollection().whereEqualTo("userEmail",email));
     }
+    public void getUserByName(String name)
+    {
+        getAll(repository.getCollection().whereEqualTo("userName",name));
+    }
+    public void getUserById(String id)
+    {
+        get(repository.getCollection().whereEqualTo("idFs",id));
+    }
 }

@@ -42,6 +42,9 @@ public class Flight extends BaseEntity implements Serializable {
     // Add any other fields you need
     private String tripId;
     // Constructor
+    public Flight(){
+
+    }
     public Flight (Airport departureAirport, Airport arrivalAirport, int duration,
                    String airplane, String airline, String airlineLogo,
                    String travelClass, String flightNumber, String legroom,

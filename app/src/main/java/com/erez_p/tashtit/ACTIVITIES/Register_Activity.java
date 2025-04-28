@@ -3,6 +3,8 @@ package com.erez_p.tashtit.ACTIVITIES;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
@@ -25,6 +27,7 @@ public class Register_Activity extends BaseActivity {
     private TextInputEditText name, email, password;
     private Button register, login;
     private UsersViewModel viewModel;
+    private boolean isParentBoolean = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -88,8 +88,7 @@ public class Trip_Plan_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                     // Create new Trip object with all the collected information
-                    Intent intent1 = new Intent(Trip_Plan_Activity.this, Home_Screen.class);
-                    startActivity(intent1);
+                    finish();
             }
         });
         // ADD HOTEL TO TRIP

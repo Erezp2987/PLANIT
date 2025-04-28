@@ -21,17 +21,11 @@ public class TripsViewModel extends BaseViewModel<Trip, Trips> {
         repository = new TripsRepository(application);
         return repository;
     }
-
-    public void getAll() {
-        getAll(Query.Direction.ASCENDING);
-    }
-
-    public void getAll(Query.Direction direction) {
-        getAll(repository.getCollection().orderBy("name", direction));
-    }
-
     // Optional: Add method to get trips by specific criteria
     public void getTripsByUserID(String userID) {
-        get(repository.getCollection().whereEqualTo("userId", userID));
+        getAll(repository.getCollection().whereEqualTo("userId", userID));
+    }
+    public void getTripsByTripID(String tripID) {
+        get(repository.getCollection().whereEqualTo("tripId", tripID));
     }
 }

@@ -29,7 +29,7 @@ import java.util.List;
 
 public class Login_Activity extends BaseActivity {
     private TextInputEditText email,password;
-    private Button logIn, register;
+    private Button logIn, register, childLogin;
     private User userEntered;
     private UsersViewModel viewModel;
     private CheckBox rememberMe;
@@ -128,6 +128,7 @@ public class Login_Activity extends BaseActivity {
                             {
                                 Intent intent = new Intent(Login_Activity.this, Home_Screen.class);
                                 intent.putExtra("idUser", userEntered.getIdFs());
+                                intent.putExtra("userEmail", userEntered.getUserEmail());
                                 startActivity(intent);
                             }
                             else

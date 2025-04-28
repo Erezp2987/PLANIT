@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -79,11 +78,12 @@ public class Start_Trip_Activity extends BaseActivity {
                     Intent intent = new Intent(Start_Trip_Activity.this, Trip_Plan_Activity.class);
                     Trip trip = new Trip(tripName.getText().toString(),
                             departureDate,
-                            returnDate,
-                            userId);
+                            returnDate,userId);
+                    //להוסיף ליוזר טריפ
                     tripsViewModel.add(trip);
                     intent.putExtra("tripId", trip.getIdFs());
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Toast.makeText(Start_Trip_Activity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -140,5 +140,6 @@ public class Start_Trip_Activity extends BaseActivity {
     protected void setViewModel() {
         tripsViewModel = new ViewModelProvider(this).get(TripsViewModel.class);
         tripsViewModel.getAll();
+
     }
 }

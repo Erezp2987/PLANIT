@@ -11,6 +11,8 @@ public class Activity extends BaseEntity implements Serializable {
     private String activityDate;
     private long activityTime;
     private long activityDuration;
+    public Activity() {
+    }
 
     public Activity(String tripID, String activityName, double activityPrice, String activityDate, long activityTime,long activityDuration) {
         this.tripID=tripID;

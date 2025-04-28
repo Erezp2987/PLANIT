@@ -14,7 +14,6 @@ public class HotelItem extends BaseEntity implements Serializable {
     private Double longtitude;
     private Double latitude;
     private String description;
-    private String tripId;
 
     public HotelItem(String name, String price, String link,Double longtitude,Double latitude,String dateDeparture, String dateReturn) {
         this.name = name;
@@ -24,16 +23,6 @@ public class HotelItem extends BaseEntity implements Serializable {
         this.latitude=latitude;
         this.dateDeparture = dateDeparture;
         this.dateReturn = dateReturn;
-    }
-    public HotelItem(String name, String price, String link,Double longtitude,Double latitude,String dateDeparture, String dateReturn,String tripId) {
-        this.name = name;
-        this.link = link;
-        this.price = price;
-        this.longtitude=longtitude;
-        this.latitude=latitude;
-        this.dateDeparture = dateDeparture;
-        this.dateReturn = dateReturn;
-        this.tripId=tripId;
     }
     public HotelItem(String name, String price, String link) {
         this.name = name;
