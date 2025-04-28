@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="#AEC3B0"
+    app:cardBackgroundColor="#f6e5b4"
     app:cardCornerRadius="16dp"
     app:cardElevation="6dp">
 
@@ -18,7 +18,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="#E3EFD3"
+            app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
 
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="Hotel Name"
                     android:textSize="18sp"
-                    android:textColor="#0D2B1D"
+                    android:textColor="#2e3b5b"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -42,10 +42,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:text="Price"
                     android:textSize="16sp"
-                    android:textColor="#345635"
-                    android:textStyle="bold"
-                    android:text="Price"/>
+                    android:textColor="#3f517d"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

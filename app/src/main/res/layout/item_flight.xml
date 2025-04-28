@@ -4,87 +4,87 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="12dp"
-    android:background="#E3EFD3"
+    android:background="#f6e5b4"
     android:layout_margin="10dp"
     android:elevation="6dp"
     android:gravity="center_vertical">
 
     <!-- Airline Logo -->
-    <ImageView
-        android:id="@+id/airlineLogoImageView"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-    android:contentDescription="Airline Logo"
-    android:layout_marginEnd="12dp"
-    android:background="#FFFFFF"
+<ImageView
+android:id="@+id/airlineLogoImageView"
+android:layout_width="64dp"
+android:layout_height="64dp"
+android:contentDescription="Airline Logo"
+android:layout_marginEnd="12dp"
+android:background="#ffffff"
     android:padding="8dp"
     android:elevation="2dp"/>
 
     <!-- Details Section -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+<LinearLayout
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_weight="1"
+android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/airlineTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Airline Name"
-            android:textSize="18sp"
-            android:textColor="#0D2B1D"
-            android:textStyle="bold"/>
+<TextView
+    android:id="@+id/airlineTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Airline Name"
+    android:textSize="18sp"
+    android:textColor="#2e3b5b"
+android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/flightNumberTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Flight No: 123"
-            android:textSize="14sp"
-            android:textColor="#345635"/>
+<TextView
+    android:id="@+id/flightNumberTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Flight No: 123"
+    android:textSize="14sp"
+    android:textColor="#3f517d"/>
 
-        <TextView
-            android:id="@+id/departureTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Departure: City A"
-            android:textSize="14sp"
-            android:textColor="#345635"/>
+<TextView
+    android:id="@+id/departureTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Departure: City A"
+    android:textSize="14sp"
+    android:textColor="#3f517d"/>
 
-        <TextView
-            android:id="@+id/arrivalTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Arrival: City B"
-            android:textSize="14sp"
-            android:textColor="#345635"/>
+<TextView
+    android:id="@+id/arrivalTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Arrival: City B"
+    android:textSize="14sp"
+    android:textColor="#3f517d"/>
 
-        <TextView
-            android:id="@+id/durationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Duration: 3h 45m"
-            android:textSize="14sp"
-            android:textColor="#345635"/>
+<TextView
+    android:id="@+id/durationTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Duration: 3h 45m"
+    android:textSize="14sp"
+    android:textColor="#3f517d"/>
 
-        <TextView
-            android:id="@+id/Class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Class: Economy"
-            android:textSize="14sp"
-            android:textColor="#345635"/>
-    </LinearLayout>
+<TextView
+    android:id="@+id/Class"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Class: Economy"
+    android:textSize="14sp"
+    android:textColor="#3f517d"/>
+</LinearLayout>
 
     <!-- Price Section -->
-    <TextView
-        android:id="@+id/priceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$250"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#688F71"
-        android:layout_marginStart="12dp"/>
-</LinearLayout>
+<TextView
+android:id="@+id/priceTextView"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="$250"
+android:textSize="18sp"
+android:textStyle="bold"
+android:textColor="#eac65a"
+    android:layout_marginStart="12dp"/>
+    </LinearLayout>
