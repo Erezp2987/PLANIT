@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.erez_p.helper.LoginPreference;
 import com.erez_p.model.User;
 import com.erez_p.model.Users;
 import com.erez_p.viewmodel.UsersViewModel;
@@ -25,10 +28,11 @@ import java.lang.annotation.Documented;
 import java.util.List;
 
 public class Login_Activity extends BaseActivity {
-    TextInputEditText email,password;
-    Button logIn, register;
-    User userEntered;
+    private TextInputEditText email,password;
+    private Button logIn, register;
+    private User userEntered;
     private UsersViewModel viewModel;
+    private CheckBox rememberMe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +56,20 @@ public class Login_Activity extends BaseActivity {
         password = findViewById(R.id.passwordEditText);
         logIn = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerviewChange);
-
+        rememberMe = findViewById(R.id.rememberMeCheckBox);
+        LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
+        if(loginPreference.getEmail() != null && loginPreference.getPassword() != null)
+        {
+            email.setText(loginPreference.getEmail());
+            password.setText(loginPreference.getPassword());
+            rememberMe.setChecked(true);
+        }
+        else
+        {
+            email.setText("");
+            password.setText("");
+            rememberMe.setChecked(false);
+        }
     }
 
     @Override
@@ -65,7 +82,7 @@ public class Login_Activity extends BaseActivity {
 //               startActivity(intent);
                 String emailInput = email.getText().toString().trim(); // Get user input
                 String passwordInput = password.getText().toString().trim(); // Get user input
-                viewModel.getUserByEmail(email.getText().toString().trim());
+                viewModel.getUserByEmail(emailInput);
             }
         });
 
@@ -74,6 +91,25 @@ public class Login_Activity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent =new Intent(Login_Activity.this,Register_Activity.class);
                 startActivity(intent);
+            }
+        });
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    //save email and password
+                    String emailInput = email.getText().toString().trim(); // Get user input
+                    String passwordInput = password.getText().toString().trim(); // Get user input
+                    LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
+                    loginPreference.saveLoginCredentials(emailInput, passwordInput);
+                }
+                else
+                {
+                    //clear email and password
+                    LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
+                    loginPreference.clearLoginCredentials();
+                }
             }
         });
 
