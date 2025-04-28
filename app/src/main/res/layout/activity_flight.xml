@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/main"
-    android:background="#E3EFD3">
+    android:background="#F6E5B4">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
-                app:strokeColor="#688F71"
+                app:strokeColor="#3F517D"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -53,8 +53,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:startIconDrawable="@android:drawable/ic_menu_mylocation"
-                        app:boxStrokeColor="#688F71"
-                        app:hintTextColor="#0D2B1D"
+                        app:boxStrokeColor="#3F517D"
+                        app:hintTextColor="#2E3B5B"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -62,7 +62,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="From"
-                            android:textColor="#0D2B1D"
+                            android:textColor="#2E3B5B"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,8 +71,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:startIconDrawable="@android:drawable/ic_menu_compass"
-                        app:boxStrokeColor="#688F71"
-                        app:hintTextColor="#0D2B1D"
+                        app:boxStrokeColor="#3F517D"
+                        app:hintTextColor="#2E3B5B"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -80,7 +80,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="To"
-                            android:textColor="#0D2B1D"
+                            android:textColor="#2E3B5B"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,8 +89,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-                        app:boxStrokeColor="#688F71"
-                        app:hintTextColor="#0D2B1D"
+                        app:boxStrokeColor="#3F517D"
+                        app:hintTextColor="#2E3B5B"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +98,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Departure Date"
-                            android:textColor="#0D2B1D"
+                            android:textColor="#2E3B5B"
                             android:inputType="date" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +113,7 @@
                         app:icon="@android:drawable/ic_menu_search"
                         app:iconGravity="textStart"
                         android:textSize="16sp"
-                        android:backgroundTint="#345635"
+                        android:backgroundTint="#2E3B5B"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Flight Results"
-                android:textColor="#0D2B1D"
+                android:textColor="#2E3B5B"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
@@ -134,7 +134,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:overScrollMode="never"
-                android:background="#F5FAF0"
+                android:background="#FFFFFF"
                 android:layout_marginBottom="16dp"/>
 
             <com.google.android.material.button.MaterialButton
@@ -143,10 +143,9 @@
                 android:layout_height="wrap_content"
                 android:text="Return"
                 android:textSize="16sp"
-                android:backgroundTint="#688F71"
-                android:textColor="@android:color/white"
+                android:backgroundTint="#F0D687"
+                android:textColor="#2E3B5B"
                 app:cornerRadius="8dp" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:id="@+id/main"
     android:layout_height="match_parent"
-    android:background="#E3EFD3">
+    android:background="#f6e5b4">
 
-    <!-- Gradient Header -->
+    <!-- Gradient Header - Using navy blue to gold gradient -->
     <View
         android:id="@+id/headerBackground"
         android:layout_width="match_parent"
@@ -26,30 +26,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"/>
 
-    <!-- Title -->
+    <!-- Title - White text on navy gradient -->
     <TextView
         android:id="@+id/tvNewTripTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create New Trip"
-        android:textColor="#FFFFFF"
+        android:textColor="#ffffff"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:shadowColor="#0D2B1D"
+        android:shadowColor="#2e3b5b"
         android:shadowRadius="4"
         android:layout_marginTop="32dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"/>
 
-    <!-- Suggestions Button -->
+    <!-- Suggestions Button - Medium blue -->
     <Button
         android:id="@+id/btnTripSuggestions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Get Trip Suggestions"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#688F71"
+        android:textColor="#ffffff"
+        android:backgroundTint="#3f517d"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="100dp"
         android:padding="16dp"
@@ -58,15 +58,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Trip Name EditText -->
+    <!-- Trip Name EditText - Gold accent -->
     <EditText
         android:id="@+id/etTripName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Enter Trip Name"
-        android:backgroundTint="#688F71"
-        android:textColor="#000000"
-        android:textColorHint="#AAAAAA"
+        android:backgroundTint="#eac65a"
+        android:textColor="#2e3b5b"
+        android:textColorHint="#3f517d"
         android:padding="16dp"
         android:textSize="16sp"
         android:layout_marginHorizontal="32dp"
@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Departure Date EditText -->
+    <!-- Departure Date EditText - Gold accent -->
     <EditText
         android:id="@+id/etDepartureDate"
         android:layout_width="0dp"
@@ -83,9 +83,9 @@
         android:hint="Select Departure Date"
         android:focusable="false"
         android:clickable="true"
-        android:backgroundTint="#688F71"
-        android:textColor="#000000"
-        android:textColorHint="#AAAAAA"
+        android:backgroundTint="#eac65a"
+        android:textColor="#2e3b5b"
+        android:textColorHint="#3f517d"
         android:padding="16dp"
         android:textSize="16sp"
         android:layout_marginHorizontal="32dp"
@@ -94,7 +94,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Return Date EditText -->
+    <!-- Return Date EditText - Gold accent -->
     <EditText
         android:id="@+id/etReturnDate"
         android:layout_width="0dp"
@@ -102,9 +102,9 @@
         android:hint="Select Return Date"
         android:focusable="false"
         android:clickable="true"
-        android:backgroundTint="#688F71"
-        android:textColor="#000000"
-        android:textColorHint="#AAAAAA"
+        android:backgroundTint="#eac65a"
+        android:textColor="#2e3b5b"
+        android:textColorHint="#3f517d"
         android:padding="16dp"
         android:textSize="16sp"
         android:layout_marginHorizontal="32dp"
@@ -113,14 +113,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Plan Trip Button -->
+    <!-- Plan Trip Button - Deep navy -->
     <Button
         android:id="@+id/btnPlanTrip"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Start Planning Trip"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#345635"
+        android:textColor="#ffffff"
+        android:backgroundTint="#2e3b5b"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="32dp"
         android:padding="16dp"

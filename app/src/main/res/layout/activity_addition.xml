@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:id="@+id/main"
     android:layout_height="match_parent"
-    android:background="#E3EFD3">
+    android:background="#F6E5B4">
 
   <com.google.android.material.appbar.AppBarLayout
       android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"
-        app:strokeColor="#688F71"
+        app:strokeColor="#3F517D"
         app:strokeWidth="1.5dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Activity Details"
-            android:textColor="#0D2B1D"
+            android:textColor="#2E3B5B"
             android:textSize="18sp"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -65,21 +65,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:boxStrokeColor="#688F71"
-            app:hintTextColor="#0D2B1D"
+            app:boxStrokeColor="#3F517D"
+            app:hintTextColor="#2E3B5B"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
             app:startIconDrawable="@android:drawable/ic_menu_edit"
-            app:startIconTint="#688F71">
+            app:startIconTint="#3F517D">
 
           <com.google.android.material.textfield.TextInputEditText
               android:id="@+id/editTextActivityName"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:hint="Activity Name"
-              android:textColor="#0D2B1D"
+              android:textColor="#2E3B5B"
               android:padding="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,16 +89,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:boxStrokeColor="#688F71"
-            app:hintTextColor="#0D2B1D"
+            app:boxStrokeColor="#3F517D"
+            app:hintTextColor="#2E3B5B"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
             app:prefixText="$"
-            app:prefixTextColor="#688F71"
+            app:prefixTextColor="#3F517D"
             app:startIconDrawable="@android:drawable/ic_menu_sort_by_size"
-            app:startIconTint="#688F71">
+            app:startIconTint="#3F517D">
 
           <com.google.android.material.textfield.TextInputEditText
               android:id="@+id/editTextActivityPrice"
@@ -106,7 +106,7 @@
               android:layout_height="wrap_content"
               android:hint="Activity Price"
               android:inputType="numberDecimal"
-              android:textColor="#0D2B1D"
+              android:textColor="#2E3B5B"
               android:padding="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,16 +116,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:boxStrokeColor="#688F71"
-            app:hintTextColor="#0D2B1D"
+            app:boxStrokeColor="#3F517D"
+            app:hintTextColor="#2E3B5B"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
             app:suffixText="minutes"
-            app:suffixTextColor="#688F71"
+            app:suffixTextColor="#3F517D"
             app:startIconDrawable="@android:drawable/ic_menu_today"
-            app:startIconTint="#688F71">
+            app:startIconTint="#3F517D">
 
           <com.google.android.material.textfield.TextInputEditText
               android:id="@+id/editTextActivityDuration"
@@ -133,7 +133,7 @@
               android:layout_height="wrap_content"
               android:hint="Activity Duration"
               android:inputType="number"
-              android:textColor="#0D2B1D"
+              android:textColor="#2E3B5B"
               android:padding="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Date and Time"
-            android:textColor="#0D2B1D"
+            android:textColor="#2E3B5B"
             android:textSize="18sp"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -161,14 +161,14 @@
               android:layout_height="wrap_content"
               android:layout_marginEnd="8dp"
               android:layout_weight="1"
-              app:boxStrokeColor="#688F71"
-              app:hintTextColor="#0D2B1D"
+              app:boxStrokeColor="#3F517D"
+              app:hintTextColor="#2E3B5B"
               app:boxCornerRadiusBottomEnd="8dp"
               app:boxCornerRadiusBottomStart="8dp"
               app:boxCornerRadiusTopEnd="8dp"
               app:boxCornerRadiusTopStart="8dp"
               app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-              app:startIconTint="#688F71">
+              app:startIconTint="#3F517D">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextActivityDate"
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Activity Date"
                 android:focusable="false"
-                android:textColor="#0D2B1D"
+                android:textColor="#2E3B5B"
                 android:padding="16dp" />
           </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,22 +186,22 @@
               android:layout_height="wrap_content"
               android:layout_marginStart="8dp"
               android:layout_weight="1"
-              app:boxStrokeColor="#688F71"
-              app:hintTextColor="#0D2B1D"
+              app:boxStrokeColor="#3F517D"
+              app:hintTextColor="#2E3B5B"
               app:boxCornerRadiusBottomEnd="8dp"
               app:boxCornerRadiusBottomStart="8dp"
               app:boxCornerRadiusTopEnd="8dp"
               app:boxCornerRadiusTopStart="8dp"
               app:startIconDrawable="@android:drawable/ic_menu_recent_history"
               app:suffixText="hour"
-              app:startIconTint="#688F71">
+              app:startIconTint="#3F517D">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextActivityTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Activity Time"
-                android:textColor="#0D2B1D"
+                android:textColor="#2E3B5B"
                 android:padding="16dp" />
           </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -227,10 +227,10 @@
           android:layout_height="60dp"
           android:layout_weight="1"
           android:layout_marginEnd="8dp"
-          android:backgroundTint="#688F71"
+          android:backgroundTint="#F0D687"
           android:text="Return"
           android:textAllCaps="false"
-          android:textColor="#FFFFFF"
+          android:textColor="#2E3B5B"
           android:textSize="16sp"
           android:letterSpacing="0.03"
           app:cornerRadius="12dp"
@@ -238,7 +238,7 @@
           app:icon="@android:drawable/ic_menu_revert"
           app:iconGravity="textStart"
           app:iconPadding="8dp"
-          app:iconTint="#FFFFFF" />
+          app:iconTint="#2E3B5B" />
 
       <!-- Confirm button -->
       <com.google.android.material.button.MaterialButton
@@ -247,7 +247,7 @@
           android:layout_height="60dp"
           android:layout_weight="1"
           android:layout_marginStart="8dp"
-          android:backgroundTint="#345635"
+          android:backgroundTint="#2E3B5B"
           android:text="Confirm"
           android:textAllCaps="false"
           android:textColor="#FFFFFF"
