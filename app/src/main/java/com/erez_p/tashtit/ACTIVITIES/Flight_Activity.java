@@ -142,7 +142,7 @@ public class Flight_Activity extends BaseActivity {
                 String tripId = intentGot.getStringExtra("tripId");
                 Intent intent= new Intent(Flight_Activity.this,Trip_Plan_Activity.class);
                 intent.putExtra("Flight",item.getFlightNumber());
-                FinalFlight finalFlight = new FinalFlight(item.getDepartureAirport().getName(), item.getArrivalAirport().getName(), item.getDuration(),
+                FinalFlight finalFlight = new FinalFlight(item.getDepartureAirport().getName(),item.getDepartureAirport().getTime(), item.getArrivalAirport().getName(),item.getArrivalAirport().getTime(), item.getDuration(),
                         item.getAirplane(), item.getAirline(), item.getAirlineLogo(), item.getTravelClass(), item.getFlightNumber(),
                         item.getLegroom(), item.getPrice(), tripId, dateInput.getText().toString());
                 flightViewModel.add(finalFlight);

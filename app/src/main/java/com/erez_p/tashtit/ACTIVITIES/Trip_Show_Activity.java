@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.erez_p.model.Activities;
 import com.erez_p.model.Flights;
 import com.erez_p.model.Hotels;
@@ -43,6 +45,9 @@ public class Trip_Show_Activity extends BaseActivity {
     private FlightViewModel flightViewModel;
     private HotelViewModel hotelViewModel;
     private ActivitiesViewModel activitiesViewModel;
+    private Flights flights;
+    private Hotels hotels;
+    private Activities activities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,7 @@ public class Trip_Show_Activity extends BaseActivity {
             return insets;
         });
         initializeViews();
+        setRecyclerView();
         setViewModel();
         setListeners();
     }
@@ -111,6 +117,10 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onChanged(Flights finalFlights) {
                 //תעדכן את רשימת הטיסות
+                if(finalFlights != null) {
+                    flights = finalFlights;
+                    flightsAdapter.notifyDataSetChanged();
+                }
             }
         });
         hotelViewModel.getHotelByTripId(tripId);
@@ -118,6 +128,9 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onChanged(Hotels finalHotels) {
                 //תעדכן את רשימת המלונות
+                if (finalHotels != null) {
+                    hotels = finalHotels;
+                }
             }
         });
         activitiesViewModel.getActivitiesByTripID(tripId);
@@ -125,7 +138,36 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onChanged(Activities finalActivities) {
                 //תעדכן את רשימת האטרקציות
+                if (finalActivities != null) {
+                    activities = finalActivities;
+                }
             }
         });
+    }
+    private void setRecyclerView(){
+        flightsAdapter = new FinalFlightAdapter(flights , R.layout.item_flight, holder -> {
+            holder.putView("flightImage", holder.itemView.findViewById(R.id.airlineLogoImageView));
+            holder.putView("airline", holder.itemView.findViewById(R.id.airlineTextView));
+            holder.putView("flightNumber", holder.itemView.findViewById(R.id.flightNumberTextView));
+            holder.putView("departure", holder.itemView.findViewById(R.id.departureTextView));
+            holder.putView("arrival", holder.itemView.findViewById(R.id.arrivalTextView));
+            holder.putView("duration", holder.itemView.findViewById(R.id.durationTextView));
+            holder.putView("price", holder.itemView.findViewById(R.id.priceTextView));
+            holder.putView("class", holder.itemView.findViewById(R.id.Class));
+        },(holder, flight, position) -> {
+            // Set the image using Glide or any other image loading library
+            Glide.with(this)
+                    .load(flight.getAirlineLogo())
+                    .into((ImageView) holder.getView("flightImage"));
+            ((TextView) holder.getView("airline")).setText("Airline: " + flight.getAirline());
+            ((TextView) holder.getView("flightNumber")).setText("Flight No: " + flight.getFlightNumber());
+            ((TextView) holder.getView("departure")).setText("Departure: " + flight.getDepartureAirport() + " at " + flight.getDeparturnLandingTime());
+            ((TextView) holder.getView("arrival")).setText("Arrival: " + flight.getArrivalAirport() + " at " + flight.getArrivalLandingTime());
+            ((TextView) holder.getView("duration")).setText("Duration: " + flight.getDuration() + " min");
+            ((TextView) holder.getView("price")).setText("Price: $" + flight.getPrice());
+            ((TextView) holder.getView("class")).setText("Class: " + flight.getTravelClass());
+        });
+        rvFlights.setAdapter(flightsAdapter);
+
     }
 }

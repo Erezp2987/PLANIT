@@ -4,7 +4,9 @@ import com.erez_p.model.BASE.BaseEntity;
 
 public class FinalFlight extends BaseEntity {
     private String departureAirport;
+    private  String departurnLandingTime;
     private String arrivalAirport;
+    private String arrivalLandingTime;
     private int duration;
     private String airPlane;
     private String airline;
@@ -17,12 +19,14 @@ public class FinalFlight extends BaseEntity {
     private String dateDeparture;
     public FinalFlight() {
     }
-    public FinalFlight(String departureAirport, String arrivalAirport, int duration,
+    public FinalFlight(String departureAirport,String departurnLandingTime, String arrivalAirport,String arrivalLandingTime, int duration,
                     String airPlane, String airline, String airlineLogo,
                     String travelClass, String flightNumber, String legroom,
                     int price, String tripId, String dateDeparture) {
         this.departureAirport = departureAirport;
+        this.departurnLandingTime = departurnLandingTime;
         this.arrivalAirport = arrivalAirport;
+        this.arrivalLandingTime = arrivalLandingTime;
         this.duration = duration;
         this.airPlane = airPlane;
         this.airline = airline;
@@ -39,6 +43,13 @@ public class FinalFlight extends BaseEntity {
         return dateDeparture;
     }
 
+    public String getDeparturnLandingTime() {
+        return departurnLandingTime;
+    }
+
+    public String getArrivalLandingTime() {
+        return arrivalLandingTime;
+    }
 
     public String getDepartureAirport() {
         return departureAirport;
