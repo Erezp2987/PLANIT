@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:orientation="vertical"
+    android:background="#eac65a"
+    android:layout_margin="10dp"
+    android:elevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#ffffff"
+        android:elevation="4dp">
+
+        <!-- Activity Name -->
+        <TextView
+            android:id="@+id/activity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activity Name"
+            android:textSize="18sp"
+            android:textColor="#2e3b5b"
+            android:textStyle="bold"/>
+
+        <!-- Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price: "
+                android:textSize="14sp"
+                android:textColor="#2e3b5b"/>
+
+            <TextView
+                android:id="@+id/activity_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$75.00"
+                android:textSize="14sp"
+                android:textColor="#3f517d"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:textSize="14sp"
+                android:textColor="#2e3b5b"/>
+
+            <TextView
+                android:id="@+id/activity_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="May 15, 2025"
+                android:textSize="14sp"
+                android:textColor="#3f517d"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time: "
+                android:textSize="14sp"
+                android:textColor="#2e3b5b"/>
+
+            <TextView
+                android:id="@+id/activity_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00 AM"
+                android:textSize="14sp"
+                android:textColor="#3f517d"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Duration -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duration: "
+                android:textSize="14sp"
+                android:textColor="#2e3b5b"/>
+
+            <TextView
+                android:id="@+id/activity_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 hours"
+                android:textSize="14sp"
+                android:textColor="#3f517d"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
