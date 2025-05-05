@@ -181,5 +181,6 @@ public class Trip_Show_Activity extends BaseActivity {
         rvHotels.setAdapter(hotelsAdapter);
         rvHotels.setLayoutManager(new LinearLayoutManager(this));
         //צריך להכין אדפטר לאטרקציות ו לייאווט לאטרקציה
+
     }
 }
