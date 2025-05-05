@@ -47,7 +47,7 @@ public class Flight_Activity extends BaseActivity {
     private RecyclerView recyclerView;
     private FlightAdapter flightAdapter;
     private static final String BASE_URL = "https://serpapi.com/";
-    private static final String API_KEY = "e6030086b12c1c7c7fda68d5768fb563c679da80726e596b079e03ba0473c929";
+    private static final String API_KEY = "86004750fb0c17541ba6f6a721f19b26ef34643493465ce2b3332a2f76e189da";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -154,7 +154,7 @@ public class Hotel_Activity extends BaseActivity {
         adapter.notifyDataSetChanged();
 
         SerpApiService service = RetrofitClient.getService();
-        Call<HotelResponse> call = service.getHotels("google_hotels", query, checkIn, checkOut, adults, maxPrice, "13", "e6030086b12c1c7c7fda68d5768fb563c679da80726e596b079e03ba0473c929");
+        Call<HotelResponse> call = service.getHotels("google_hotels", query, checkIn, checkOut, adults, maxPrice, "13", "86004750fb0c17541ba6f6a721f19b26ef34643493465ce2b3332a2f76e189da");
 
         call.enqueue(new Callback<HotelResponse>() {
             @Override
