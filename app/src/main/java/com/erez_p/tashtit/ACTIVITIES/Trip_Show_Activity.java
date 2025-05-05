@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -119,7 +120,7 @@ public class Trip_Show_Activity extends BaseActivity {
                 //תעדכן את רשימת הטיסות
                 if(finalFlights != null) {
                     flights = finalFlights;
-                    flightsAdapter.notifyDataSetChanged();
+                    flightsAdapter.setItems(finalFlights);
                 }
             }
         });
@@ -130,6 +131,7 @@ public class Trip_Show_Activity extends BaseActivity {
                 //תעדכן את רשימת המלונות
                 if (finalHotels != null) {
                     hotels = finalHotels;
+                    hotelsAdapter.setItems(hotels);
                 }
             }
         });
@@ -164,10 +166,20 @@ public class Trip_Show_Activity extends BaseActivity {
             ((TextView) holder.getView("departure")).setText("Departure: " + flight.getDepartureAirport() + " at " + flight.getDeparturnLandingTime());
             ((TextView) holder.getView("arrival")).setText("Arrival: " + flight.getArrivalAirport() + " at " + flight.getArrivalLandingTime());
             ((TextView) holder.getView("duration")).setText("Duration: " + flight.getDuration() + " min");
-            ((TextView) holder.getView("price")).setText("Price: $" + flight.getPrice());
+            ((TextView) holder.getView("price")).setText("$" + flight.getPrice());
             ((TextView) holder.getView("class")).setText("Class: " + flight.getTravelClass());
         });
         rvFlights.setAdapter(flightsAdapter);
-
+        rvFlights.setLayoutManager(new LinearLayoutManager(this));
+        hotelsAdapter = new FinalHotelAdapter(hotels , R.layout.hotel_item_layout, holder -> {
+            holder.putView("hotelName", holder.itemView.findViewById(R.id.hotel_name1));
+            holder.putView("price", holder.itemView.findViewById(R.id.hotel_price1));
+        },(holder, hotel, position) -> {
+            ((TextView) holder.getView("hotelName")).setText("Hotel: " + hotel.getName());
+            ((TextView) holder.getView("price")).setText("Price per night: $" + hotel.getPrice());
+        });
+        rvHotels.setAdapter(hotelsAdapter);
+        rvHotels.setLayoutManager(new LinearLayoutManager(this));
+        //צריך להכין אדפטר לאטרקציות ו לייאווט לאטרקציה
     }
 }

@@ -19,7 +19,7 @@ public class ActivitiesViewModel extends BaseViewModel<Activity, Activities> {
         super(Activity.class, Activities.class, application);
     }
     public void getActivitiesByTripID(String tripID) {
-        get(repository.getCollection().whereEqualTo("tripID", tripID));
+        getAll(repository.getCollection().whereEqualTo("tripID", tripID));
     }
 
 }

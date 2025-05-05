@@ -27,54 +27,54 @@ android:layout_height="wrap_content"
 android:layout_weight="1"
 android:orientation="vertical">
 
-<TextView
-    android:id="@+id/airlineTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Airline Name"
-    android:textSize="18sp"
-    android:textColor="#2e3b5b"
-android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/airlineTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Airline Name"
+        android:textColor="#2e3b5b"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-<TextView
-    android:id="@+id/flightNumberTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Flight No: 123"
-    android:textSize="14sp"
-    android:textColor="#3f517d"/>
+    <TextView
+        android:id="@+id/flightNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Flight No: 123"
+        android:textColor="#3f517d"
+        android:textSize="14sp" />
 
-<TextView
-    android:id="@+id/departureTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Departure: City A"
-    android:textSize="14sp"
-    android:textColor="#3f517d"/>
+    <TextView
+        android:id="@+id/departureTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Departure: City A"
+        android:textColor="#3f517d"
+        android:textSize="14sp" />
 
-<TextView
-    android:id="@+id/arrivalTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Arrival: City B"
-    android:textSize="14sp"
-    android:textColor="#3f517d"/>
+    <TextView
+        android:id="@+id/arrivalTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arrival: City B"
+        android:textColor="#3f517d"
+        android:textSize="14sp" />
 
-<TextView
-    android:id="@+id/durationTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Duration: 3h 45m"
-    android:textSize="14sp"
-    android:textColor="#3f517d"/>
+    <TextView
+        android:id="@+id/durationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duration: 3h 45m"
+        android:textColor="#3f517d"
+        android:textSize="14sp" />
 
-<TextView
-    android:id="@+id/Class"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Class: Economy"
-    android:textSize="14sp"
-    android:textColor="#3f517d"/>
+    <TextView
+        android:id="@+id/Class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Class: Economy"
+        android:textColor="#3f517d"
+        android:textSize="14sp" />
 </LinearLayout>
 
     <!-- Price Section -->

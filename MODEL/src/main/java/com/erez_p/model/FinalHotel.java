@@ -10,8 +10,10 @@ public class FinalHotel extends BaseEntity {
     private String link;
     private Double longtitude;
     private Double latitude;
-    private String description;
     private String tripId;
+
+    public FinalHotel() {
+    }
     public FinalHotel(String name, String price, String link, Double longtitude, Double latitude, String dateDeparture, String dateReturn, String tripId) {
         this.name = name;
         this.link = link;
@@ -51,9 +53,6 @@ public class FinalHotel extends BaseEntity {
         return latitude;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
     public String getTripId() {
         return tripId;

@@ -98,13 +98,13 @@ public class Home_Screen extends BaseActivity {
     @Override
     protected void setViewModel() {
         activitiesViewModel = new ViewModelProvider(Home_Screen.this).get(ActivitiesViewModel.class);
-        activitiesViewModel.getAll();
+        //activitiesViewModel.getAll();
         flightsViewModel = new ViewModelProvider(Home_Screen.this).get(FlightViewModel.class);
-        flightsViewModel.getAll();
+        //flightsViewModel.getAll();
         hotelViewModel = new ViewModelProvider(Home_Screen.this).get(HotelViewModel.class);
-        hotelViewModel.getAll();
+        //hotelViewModel.getAll();
         usersViewModel = new ViewModelProvider(Home_Screen.this).get(UsersViewModel.class);
-        usersViewModel.getAll();
+        //usersViewModel.getAll();
         viewModel = new ViewModelProvider(Home_Screen.this).get(TripsViewModel.class);
         viewModel.getTripsByUserID(userId);
         viewModel.getLiveDataCollection().observe(Home_Screen.this, new Observer<Trips>() {
@@ -208,6 +208,7 @@ public class Home_Screen extends BaseActivity {
                                 activitiesViewModel.getActivitiesByTripID(item.getIdFs());
                                 flightsViewModel.getFlightByTripID(item.getIdFs());
                                 hotelViewModel.getHotelByTripId(item.getIdFs());
+                                // מחיקה לא עובדת של אטרקציה
                                 activitiesViewModel.getLiveDataCollection().observe(Home_Screen.this, activities -> {
                                     if (activities != null) {
                                         for (int i = 0; i < activities.size(); i++) {
@@ -223,7 +224,7 @@ public class Home_Screen extends BaseActivity {
                                         }
                                     }
                                 });
-                                //לא עובד השאר כן
+                                //לא עובד המחיקה של המלונות
                                 hotelViewModel.getLiveDataCollection().observe(Home_Screen.this, hotels -> {
                                     if (hotels != null) {
                                         for (int i = 0; i < hotels.size(); i++) {
