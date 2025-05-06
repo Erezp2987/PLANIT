@@ -2,14 +2,20 @@ package com.erez_p.tashtit.ACTIVITIES;
 
 import static android.app.ProgressDialog.show;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -93,18 +99,30 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //כאן תוסיף פעילות לטיול
+                Intent intent = new Intent(Trip_Show_Activity.this, ActivityAddition_Activity.class);
+                intent.putExtra("tripId", tripId);
+                resultLauncher.launch(intent);
+                activitiesAdapter.notifyDataSetChanged();
             }
         });
         btnAddFlight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //כאן תוסיף טיסה לטיול
+                Intent intent = new Intent(Trip_Show_Activity.this, ActivityAddition_Activity.class);
+                intent.putExtra("tripId", tripId);
+                resultLauncher.launch(intent);
+                flightsAdapter.notifyDataSetChanged();
             }
         });
         btnAddHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //כאן תוסיף מלון לטיול
+                Intent intent = new Intent(Trip_Show_Activity.this, ActivityAddition_Activity.class);
+                intent.putExtra("tripId", tripId);
+                resultLauncher.launch(intent);
+                hotelsAdapter.notifyDataSetChanged();
             }
         });
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
@@ -263,4 +281,39 @@ public class Trip_Show_Activity extends BaseActivity {
         rvActivities.setAdapter(activitiesAdapter);
         rvActivities.setLayoutManager(new LinearLayoutManager(this));
     }
+    ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == 200) {
+                        //hotel
+                        Intent intent = result.getData();
+                        String hotelname = intent.getStringExtra("HotelItem");
+                        if (hotelname != null) {
+                            Toast.makeText( Trip_Show_Activity.this, hotelname + "added", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if(result.getResultCode() == 100)
+                    {
+                        // flight
+                        Intent intent = result.getData();
+                        String flightname = intent.getStringExtra("Flight");
+                        if (flightname != null) {
+                            Toast.makeText( Trip_Show_Activity.this, flightname + "added", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if(result.getResultCode() == 300)
+                    {
+                        // activity
+                        Intent intent = result.getData();
+                        String Activityname = intent.getStringExtra("Activity");
+                        if (Activityname != null) {
+
+                            Toast.makeText( Trip_Show_Activity.this, Activityname + "added", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+    );
 }
