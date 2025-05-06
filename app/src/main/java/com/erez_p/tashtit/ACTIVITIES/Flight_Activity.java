@@ -1,6 +1,7 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class Flight_Activity extends BaseActivity {
     private FlightAdapter flightAdapter;
     private static final String BASE_URL = "https://serpapi.com/";
     private static final String API_KEY = "86004750fb0c17541ba6f6a721f19b26ef34643493465ce2b3332a2f76e189da";
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +166,11 @@ public class Flight_Activity extends BaseActivity {
     }
 
     private void searchFlights() {
+        progressDialog = new ProgressDialog(Flight_Activity.this);
+        progressDialog.setMessage("Searching for flights...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -177,6 +184,9 @@ public class Flight_Activity extends BaseActivity {
         call.enqueue(new Callback<FlightResponse>() {
             @Override
             public void onResponse(Call<FlightResponse> call, Response<FlightResponse> response) {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
                 if (response.isSuccessful() && response.body() != null) {
                     FlightResponse flightResponse = response.body();
                     List<BestFlight> bestFlights = flightResponse.getBestFlights();
@@ -215,6 +225,9 @@ public class Flight_Activity extends BaseActivity {
 
             @Override
             public void onFailure(Call<FlightResponse> call, Throwable t) {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
                 Log.e("API_FAILURE", "Request failed: " + t.getMessage());
             }
         });

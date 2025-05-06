@@ -109,7 +109,7 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //כאן תוסיף טיסה לטיול
-                Intent intent = new Intent(Trip_Show_Activity.this, ActivityAddition_Activity.class);
+                Intent intent = new Intent(Trip_Show_Activity.this, Flight_Activity.class);
                 intent.putExtra("tripId", tripId);
                 resultLauncher.launch(intent);
                 flightsAdapter.notifyDataSetChanged();
@@ -119,7 +119,7 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //כאן תוסיף מלון לטיול
-                Intent intent = new Intent(Trip_Show_Activity.this, ActivityAddition_Activity.class);
+                Intent intent = new Intent(Trip_Show_Activity.this, Hotel_Activity.class);
                 intent.putExtra("tripId", tripId);
                 resultLauncher.launch(intent);
                 hotelsAdapter.notifyDataSetChanged();

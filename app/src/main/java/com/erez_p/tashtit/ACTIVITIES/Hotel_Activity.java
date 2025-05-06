@@ -1,6 +1,7 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class Hotel_Activity extends BaseActivity {
     private RecyclerView recyclerViewHotels;
     private HotelAdapter hotelAdapter;
     private HotelViewModel hotelViewModel;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,11 @@ public class Hotel_Activity extends BaseActivity {
     }
 
     private void fetchHotels() {
+        progressDialog = new ProgressDialog(Hotel_Activity.this);
+        progressDialog.setMessage("Loading hotels...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         String query = editTextQuery.getText().toString();
         String checkIn = editTextCheckIn.getText().toString();
         String checkOut = editTextCheckOut.getText().toString();
@@ -159,6 +166,9 @@ public class Hotel_Activity extends BaseActivity {
         call.enqueue(new Callback<HotelResponse>() {
             @Override
             public void onResponse(Call<HotelResponse> call, Response<HotelResponse> response) {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
                 if (response.isSuccessful() && response.body() != null) {
                     HotelResponse hotelResponse = response.body();
                     hotelItems.clear();
@@ -211,6 +221,9 @@ public class Hotel_Activity extends BaseActivity {
 
             @Override
             public void onFailure(Call<HotelResponse> call, Throwable t) {
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
                 Log.e("API_FAILURE", "API Call failed", t);
             }
         });
