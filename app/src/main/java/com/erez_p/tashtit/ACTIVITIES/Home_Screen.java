@@ -98,13 +98,9 @@ public class Home_Screen extends BaseActivity {
     @Override
     protected void setViewModel() {
         activitiesViewModel = new ViewModelProvider(Home_Screen.this).get(ActivitiesViewModel.class);
-        //activitiesViewModel.getAll();
         flightsViewModel = new ViewModelProvider(Home_Screen.this).get(FlightViewModel.class);
-        //flightsViewModel.getAll();
         hotelViewModel = new ViewModelProvider(Home_Screen.this).get(HotelViewModel.class);
-        //hotelViewModel.getAll();
         usersViewModel = new ViewModelProvider(Home_Screen.this).get(UsersViewModel.class);
-        //usersViewModel.getAll();
         viewModel = new ViewModelProvider(Home_Screen.this).get(TripsViewModel.class);
         viewModel.getTripsByUserID(userId);
         viewModel.getLiveDataCollection().observe(Home_Screen.this, new Observer<Trips>() {
