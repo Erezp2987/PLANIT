@@ -1,5 +1,6 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,7 @@ public class Login_Activity extends BaseActivity {
     private User userEntered;
     private UsersViewModel viewModel;
     private CheckBox rememberMe;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +103,12 @@ public class Login_Activity extends BaseActivity {
 //               startActivity(intent);
                 String emailInput = email.getText().toString().trim(); // Get user input
                 String passwordInput = password.getText().toString().trim(); // Get user input
+
+                progressDialog = new ProgressDialog(Login_Activity.this);
+                progressDialog.setMessage("Logging in...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+
                 viewModel.getUserByEmail(emailInput);
             }
         });
@@ -140,6 +148,9 @@ public class Login_Activity extends BaseActivity {
         viewModel.getLiveDataEntity().observe(Login_Activity.this, new Observer<User>() {
                     @Override
                     public void onChanged(User user) {
+                        if (progressDialog != null && progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
                         if(user!=null)
                         {
                             userEntered=user;
