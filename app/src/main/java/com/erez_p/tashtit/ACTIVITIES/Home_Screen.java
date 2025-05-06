@@ -186,7 +186,6 @@ public class Home_Screen extends BaseActivity {
                 Intent intent = new Intent(Home_Screen.this, Trip_Show_Activity.class);
                 intent.putExtra("tripId", item.getIdFs());
                 startActivity(intent);
-                finish();
             }
         });
         adapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<Trip>() {
