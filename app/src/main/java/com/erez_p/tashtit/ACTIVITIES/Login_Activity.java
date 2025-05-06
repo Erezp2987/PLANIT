@@ -9,6 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.erez_p.helper.LoginPreference;
+import com.erez_p.model.GeminiManager;
+import com.erez_p.model.ResponseCallback;
 import com.erez_p.model.User;
 import com.erez_p.model.Users;
 import com.erez_p.viewmodel.UsersViewModel;
@@ -70,6 +72,23 @@ public class Login_Activity extends BaseActivity {
             password.setText("");
             rememberMe.setChecked(false);
         }
+        //TODO: fix this code and ask ofer what is the problem with it
+        /*
+        GeminiManager g = new GeminiManager();
+        g.getResponse("send me the codes of the civilian airports of the country/city that i write here with a , between them if their are more then one code:"+"madrid" +"give me just the codes without any other words"
+                , new ResponseCallback() {
+
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(Login_Activity.this, response, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Toast.makeText(Login_Activity.this, "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+         */
     }
 
     @Override

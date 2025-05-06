@@ -21,7 +21,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erez_p.model.Flight;
+import com.erez_p.model.GeminiManager;
 import com.erez_p.model.HotelItem;
+import com.erez_p.model.ResponseCallback;
 import com.erez_p.model.Trip;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.R;
@@ -153,6 +155,5 @@ public class Trip_Plan_Activity extends BaseActivity {
     @Override
     protected void setViewModel()
     {
-
     }
 }

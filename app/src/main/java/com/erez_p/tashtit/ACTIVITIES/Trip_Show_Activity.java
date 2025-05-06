@@ -1,5 +1,7 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
+import static android.app.ProgressDialog.show;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,16 +21,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.erez_p.model.Activities;
+import com.erez_p.model.Activity;
+import com.erez_p.model.FinalFlight;
+import com.erez_p.model.FinalHotel;
 import com.erez_p.model.Flights;
 import com.erez_p.model.Hotels;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.ActivitiesAdapter;
+import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
 import com.erez_p.tashtit.ADPTERS.FinalFlightAdapter;
 import com.erez_p.tashtit.ADPTERS.FinalHotelAdapter;
 import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.ActivitiesViewModel;
 import com.erez_p.viewmodel.FlightViewModel;
 import com.erez_p.viewmodel.HotelViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class Trip_Show_Activity extends BaseActivity {
     private EditText tvTripName,
@@ -104,6 +111,7 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //כאן תשמור את השינויים בטיול
+                finish();
             }
         });
     }
@@ -142,6 +150,7 @@ public class Trip_Show_Activity extends BaseActivity {
                 //תעדכן את רשימת האטרקציות
                 if (finalActivities != null) {
                     activities = finalActivities;
+                    activitiesAdapter.setItems(activities);
                 }
             }
         });
@@ -169,6 +178,25 @@ public class Trip_Show_Activity extends BaseActivity {
             ((TextView) holder.getView("price")).setText("$" + flight.getPrice());
             ((TextView) holder.getView("class")).setText("Class: " + flight.getTravelClass());
         });
+        flightsAdapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<FinalFlight>() {
+            @Override
+            public boolean onItemLongClick(FinalFlight item, int position) {
+                new MaterialAlertDialogBuilder(Trip_Show_Activity.this)
+                        .setMessage("Delete " + item.getFlightNumber() + " ?")
+                        .setIcon(R.drawable.trashcan)
+                        .setCancelable(true)
+                        .setTitle("Delete")
+                        .setNegativeButton("No", (dialog, which) -> {
+                            // Do nothing
+                        })
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            flightViewModel.delete(item);
+                            flightsAdapter.notifyDataSetChanged();
+                        })
+                        .show();
+                return false;
+            }
+        });
         rvFlights.setAdapter(flightsAdapter);
         rvFlights.setLayoutManager(new LinearLayoutManager(this));
         hotelsAdapter = new FinalHotelAdapter(hotels , R.layout.hotel_item_layout, holder -> {
@@ -176,11 +204,63 @@ public class Trip_Show_Activity extends BaseActivity {
             holder.putView("price", holder.itemView.findViewById(R.id.hotel_price1));
         },(holder, hotel, position) -> {
             ((TextView) holder.getView("hotelName")).setText("Hotel: " + hotel.getName());
-            ((TextView) holder.getView("price")).setText("Price per night: $" + hotel.getPrice());
+            ((TextView) holder.getView("price")).setText("Price per night: " + hotel.getPrice());
+        });
+        hotelsAdapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<FinalHotel>() {
+            @Override
+            public boolean onItemLongClick(FinalHotel item, int position) {
+                new MaterialAlertDialogBuilder(Trip_Show_Activity.this)
+                        .setMessage("Delete " + item.getName() + " ?")
+                        .setIcon(R.drawable.trashcan)
+                        .setCancelable(true)
+                        .setTitle("Delete")
+                        .setNegativeButton("No", (dialog, which) -> {
+                            // Do nothing
+                        })
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            hotelViewModel.delete(item);
+                            hotelsAdapter.notifyDataSetChanged();
+                        })
+                        .show();
+                return false;
+            }
         });
         rvHotels.setAdapter(hotelsAdapter);
         rvHotels.setLayoutManager(new LinearLayoutManager(this));
         //צריך להכין אדפטר לאטרקציות ו לייאווט לאטרקציה
-
+        activitiesAdapter = new ActivitiesAdapter(activities, R.layout.activity_item_layout, holder -> {
+            holder.putView("activityName", holder.itemView.findViewById(R.id.activity_name));
+            holder.putView("activityPrice", holder.itemView.findViewById(R.id.activity_price));
+            holder.putView("activityDate", holder.itemView.findViewById(R.id.activity_date));
+            holder.putView("activityTime", holder.itemView.findViewById(R.id.activity_time));
+            holder.putView("activityDuration", holder.itemView.findViewById(R.id.activity_duration));
+        }, (holder, activity, position) -> {
+            ((TextView) holder.getView("activityName")).setText(activity.getActivityName());
+            ((TextView) holder.getView("activityPrice")).setText("$" + activity.getActivityPrice());
+            ((TextView) holder.getView("activityDate")).setText(activity.getActivityDate());
+            ((TextView) holder.getView("activityTime")).setText(""+activity.getActivityTime());
+            ((TextView) holder.getView("activityDuration")).setText("" + activity.getActivityDuration() + " hours");
+        });
+        activitiesAdapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<Activity>() {
+            @Override
+            public boolean onItemLongClick(Activity item, int position) {
+                new MaterialAlertDialogBuilder(Trip_Show_Activity.this)
+                        .setMessage("Delete " + item.getActivityName() + " ?")
+                        .setIcon(R.drawable.trashcan)
+                        .setCancelable(true)
+                        .setTitle("Delete")
+                        .setNegativeButton("No", (dialog, which) -> {
+                            // Do nothing
+                        })
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            activitiesViewModel.delete(item);
+                            activitiesAdapter.notifyDataSetChanged();
+                        })
+                        .show();
+                return false;
+            }
+        });
+        rvActivities.setAdapter(activitiesAdapter);
+        rvActivities.setLayoutManager(new LinearLayoutManager(this));
     }
 }
