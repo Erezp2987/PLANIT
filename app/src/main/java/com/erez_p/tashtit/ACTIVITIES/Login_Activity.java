@@ -74,10 +74,9 @@ public class Login_Activity extends BaseActivity {
             password.setText("");
             rememberMe.setChecked(false);
         }
-        //TODO: fix this code and ask ofer what is the problem with it
         /*
         GeminiManager g = new GeminiManager();
-        g.getResponse("send me the codes of the civilian airports of the country/city that i write here with a , between them if their are more then one code:"+"madrid" +"give me just the codes without any other words"
+        g.getResponse("send me the codes of the civilian airports of the country/city that i write here with a , between them if their are more then one code:"+"madrid" + "for example israel would be TLV"+"give me just the codes without any other words"
                 , new ResponseCallback() {
 
             @Override
@@ -91,6 +90,7 @@ public class Login_Activity extends BaseActivity {
             }
         });
          */
+
     }
 
     @Override

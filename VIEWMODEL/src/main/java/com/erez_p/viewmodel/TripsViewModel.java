@@ -26,6 +26,6 @@ public class TripsViewModel extends BaseViewModel<Trip, Trips> {
         getAll(repository.getCollection().whereEqualTo("userId", userID));
     }
     public void getTripsByTripID(String tripID) {
-        get(repository.getCollection().whereEqualTo("tripId", tripID));
+        get(repository.getCollection().whereEqualTo("idFs", tripID));
     }
 }

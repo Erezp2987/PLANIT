@@ -2,10 +2,12 @@ package com.erez_p.tashtit.ACTIVITIES;
 
 import static android.app.ProgressDialog.show;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import com.erez_p.model.FinalFlight;
 import com.erez_p.model.FinalHotel;
 import com.erez_p.model.Flights;
 import com.erez_p.model.Hotels;
+import com.erez_p.model.Trip;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.ActivitiesAdapter;
 import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
@@ -41,7 +44,10 @@ import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.ActivitiesViewModel;
 import com.erez_p.viewmodel.FlightViewModel;
 import com.erez_p.viewmodel.HotelViewModel;
+import com.erez_p.viewmodel.TripsViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.Calendar;
 
 public class Trip_Show_Activity extends BaseActivity {
     private EditText tvTripName,
@@ -50,7 +56,7 @@ public class Trip_Show_Activity extends BaseActivity {
     private RecyclerView rvFlights,
             rvHotels,
             rvActivities;
-    private Button btnDiscardChanges,
+    private Button
             btnSaveChanges, btnAddFlight, btnAddHotel, btnAddActivity;
     private FinalFlightAdapter flightsAdapter;
     private FinalHotelAdapter hotelsAdapter;
@@ -59,9 +65,12 @@ public class Trip_Show_Activity extends BaseActivity {
     private FlightViewModel flightViewModel;
     private HotelViewModel hotelViewModel;
     private ActivitiesViewModel activitiesViewModel;
+    private TripsViewModel tripViewModel;
     private Flights flights;
     private Hotels hotels;
     private Activities activities;
+    private Trip Usertrip;
+    private String departureDate, returnDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +91,10 @@ public class Trip_Show_Activity extends BaseActivity {
     protected void initializeViews() {
         tvTripName = findViewById(R.id.etTripName);
         tvDepartureDate = findViewById(R.id.etDepartureDate);
+        tvDepartureDate.setFocusable(false);
         tvReturnDate = findViewById(R.id.etReturnDate);
+        tvReturnDate.setFocusable(false);
+        tvReturnDate.setEnabled(false);
         rvFlights = findViewById(R.id.rvFlights);
         rvHotels = findViewById(R.id.rvHotels);
         rvActivities = findViewById(R.id.rvActivities);
@@ -95,6 +107,9 @@ public class Trip_Show_Activity extends BaseActivity {
 
     @Override
     protected void setListeners() {
+        tvDepartureDate.setOnClickListener(v -> showDatePickerDialog(true));
+        tvReturnDate.setOnClickListener(v -> showDatePickerDialog(false));
+
         btnAddActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +144,17 @@ public class Trip_Show_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //כאן תשמור את השינויים בטיול
+                //את השמירה של הנתונים שהשתננו כמו שם תאריך יציאה ותאריך חזרהתוסיף
+                if(!Usertrip.getName().equals(tvTripName.getText().toString().trim())) {
+                    Usertrip.setName(tvTripName.getText().toString().trim());
+                }
+                if(!Usertrip.getDateDeparture().equals( tvDepartureDate.getText().toString().trim())) {
+                    Usertrip.setDateDeparture(tvDepartureDate.getText().toString().trim());
+                }
+                if(!Usertrip.getDateReturn().equals( tvReturnDate.getText().toString().trim())) {
+                    Usertrip.setDateReturn(tvReturnDate.getText().toString().trim());
+                }
+                tripViewModel.save(Usertrip);
                 finish();
             }
         });
@@ -139,6 +165,7 @@ public class Trip_Show_Activity extends BaseActivity {
         flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
         hotelViewModel = new ViewModelProvider(this).get(HotelViewModel.class);
         activitiesViewModel = new ViewModelProvider(this).get(ActivitiesViewModel.class);
+        tripViewModel = new ViewModelProvider(this).get(TripsViewModel.class);
         flightViewModel.getFlightByTripID(tripId);
         flightViewModel.getLiveDataCollection().observe(this, new Observer<Flights>() {
             @Override
@@ -169,6 +196,21 @@ public class Trip_Show_Activity extends BaseActivity {
                 if (finalActivities != null) {
                     activities = finalActivities;
                     activitiesAdapter.setItems(activities);
+                }
+            }
+        });
+        tripViewModel.getTripsByTripID(tripId);
+        tripViewModel.getLiveDataEntity().observe(this, new Observer<Trip>() {
+            @Override
+            public void onChanged(Trip trip) {
+                if(trip != null) {
+                    Usertrip= trip;
+                    tvTripName.setText(trip.getName());
+                    tvTripName.setTextColor(getResources().getColor(R.color.white));
+                    tvDepartureDate.setText(trip.getDateDeparture());
+                    tvDepartureDate.setTextColor(getResources().getColor(R.color.white));
+                    tvReturnDate.setText(trip.getDateReturn());
+                    tvReturnDate.setTextColor(getResources().getColor(R.color.white));
                 }
             }
         });
@@ -316,4 +358,57 @@ public class Trip_Show_Activity extends BaseActivity {
                 }
             }
     );
+
+
+
+
+
+
+
+
+    private void showDatePickerDialog(final boolean isDeparture) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        String selectedDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        if (isDeparture) {
+                            departureDate = selectedDate;
+                            tvDepartureDate.setText("Departure: " + selectedDate);
+                            tvReturnDate.setEnabled(true);
+                        } else {
+                            returnDate = selectedDate;
+                            tvReturnDate.setText("Return: " + selectedDate);
+                        }
+                    }
+                },
+                year,
+                month,
+                day
+        );
+
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        // Set min date for return date picker if departure date is already selected
+        if (!isDeparture && departureDate != null && !departureDate.isEmpty()) {
+            try {
+                String[] dateParts = departureDate.split("-");
+                if (dateParts.length == 3) {
+                    Calendar minDate = Calendar.getInstance();
+                    minDate.set(Integer.parseInt(dateParts[0]),
+                            Integer.parseInt(dateParts[1]) - 1,
+                            Integer.parseInt(dateParts[2]));
+                    datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        datePickerDialog.show();
+    }
 }
