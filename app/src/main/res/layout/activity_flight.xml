@@ -25,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -61,10 +63,23 @@
                             android:id="@+id/fromInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="From"
+                            android:hint="From Airport"
                             android:textColor="#2E3B5B"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- New RecyclerView for "From" input suggestions -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/fromRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="#FFFFFF"
+                        android:visibility="gone"
+                        android:layout_marginBottom="8dp"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -79,10 +94,23 @@
                             android:id="@+id/toInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="To"
+                            android:hint="To Airport"
                             android:textColor="#2E3B5B"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- New RecyclerView for "To" input suggestions -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/toRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="#FFFFFF"
+                        android:visibility="gone"
+                        android:layout_marginBottom="8dp"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:cardCornerRadius="4dp"
+                        android:elevation="2dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -131,9 +159,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="200dp"
                 android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:background="#FFFFFF"
                 android:layout_marginBottom="16dp"/>
 

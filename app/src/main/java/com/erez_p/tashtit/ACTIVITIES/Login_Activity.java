@@ -48,9 +48,8 @@ public class Login_Activity extends BaseActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        initializeViews();
         setViewModel();
+        initializeViews();
         setListeners();
     }
 
@@ -67,6 +66,8 @@ public class Login_Activity extends BaseActivity {
             email.setText(loginPreference.getEmail());
             password.setText(loginPreference.getPassword());
             rememberMe.setChecked(true);
+            viewModel.getUserByEmail(loginPreference.getEmail());
+
         }
         else
         {
@@ -74,23 +75,6 @@ public class Login_Activity extends BaseActivity {
             password.setText("");
             rememberMe.setChecked(false);
         }
-        /*
-        GeminiManager g = new GeminiManager();
-        g.getResponse("send me the codes of the civilian airports of the country/city that i write here with a , between them if their are more then one code:"+"madrid" + "for example israel would be TLV"+"give me just the codes without any other words"
-                , new ResponseCallback() {
-
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(Login_Activity.this, response, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                Toast.makeText(Login_Activity.this, "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-         */
-
     }
 
     @Override
@@ -99,8 +83,6 @@ public class Login_Activity extends BaseActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(Login_Activity.this, Home_Screen.class);
-//               startActivity(intent);
                 String emailInput = email.getText().toString().trim(); // Get user input
                 String passwordInput = password.getText().toString().trim(); // Get user input
 
