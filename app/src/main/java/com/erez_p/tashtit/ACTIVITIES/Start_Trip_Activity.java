@@ -23,7 +23,7 @@ import com.erez_p.viewmodel.TripsViewModel;
 import java.util.Calendar;
 
 public class Start_Trip_Activity extends BaseActivity {
-    private Button suggestions, start;
+    private Button btnReturn, start;
     EditText tripName, tripDateDeparture, tripDateReturn;
     String departureDate, returnDate;
     private TripsViewModel tripsViewModel;
@@ -46,7 +46,7 @@ public class Start_Trip_Activity extends BaseActivity {
 
     @Override
     protected void initializeViews() {
-        suggestions = findViewById(R.id.btnTripSuggestions);
+        btnReturn = findViewById(R.id.buttonReturn);
         start = findViewById(R.id.btnPlanTrip);
         tripName=findViewById(R.id.etTripName);
         tripDateDeparture=findViewById(R.id.etDepartureDate);
@@ -59,11 +59,11 @@ public class Start_Trip_Activity extends BaseActivity {
     protected void setListeners() 
     {
         //AI NIR (FOR TRIP SUGGESTIONS)
-        suggestions.setOnClickListener(new View.OnClickListener() {
+        btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) 
             {
-                
+                finish();
             }
         });
         tripDateReturn.setOnClickListener(v -> showDatePickerDialog(false));

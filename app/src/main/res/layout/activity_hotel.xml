@@ -10,13 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/gradient_background"
-            app:title="Find Your Perfect Stay"
-            app:titleTextColor="@android:color/white" />
+            android:layout_height="?attr/actionBarSize">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_background"
+                app:title="Find Your Perfect Stay"
+                app:titleTextColor="@android:color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/returnbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Return"
+                android:textSize="14sp"
+                android:minHeight="36dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:backgroundTint="#F0D687"
+                android:textColor="#2E3B5B"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -217,20 +246,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintTop_toBottomOf="@id/searchCard" />
 
-        <!-- Return button - positioned at the bottom of the screen -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/returnbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Return"
-            android:textAllCaps="false"
-            android:backgroundTint="#F0D687"
-            android:textColor="#2E3B5B"
-            android:textSize="16sp"
-            app:cornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <!-- RecyclerView that stops above the return button -->
+        <!-- RecyclerView that now takes the full remaining space -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHotels"
             android:layout_width="match_parent"
@@ -240,8 +256,7 @@
             android:paddingVertical="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/resultsLabel"
-            app:layout_constraintBottom_toTopOf="@id/returnbutton"
-            android:layout_marginBottom="8dp" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

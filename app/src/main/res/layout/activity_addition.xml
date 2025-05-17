@@ -18,7 +18,32 @@
         android:background="@drawable/gradient_background"
         app:title="Add New Activity"
         app:titleTextColor="@android:color/white"
-        app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+        app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline6">
+
+      <!-- Return button moved to toolbar -->
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/buttonReturn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end|center_vertical"
+          android:layout_marginEnd="8dp"
+          android:backgroundTint="#F0D687"
+          android:text="Return"
+          android:textAllCaps="false"
+          android:textColor="#2E3B5B"
+          android:textSize="14sp"
+          android:minHeight="40dp"
+          android:paddingStart="12dp"
+          android:paddingEnd="12dp"
+          android:letterSpacing="0.03"
+          app:cornerRadius="8dp"
+          app:icon="@android:drawable/ic_menu_revert"
+          app:iconGravity="textStart"
+          app:iconPadding="8dp"
+          app:iconSize="18dp"
+          app:iconTint="#2E3B5B" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
   </com.google.android.material.appbar.AppBarLayout>
 
@@ -208,45 +233,22 @@
       </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Button container for return and confirm buttons -->
+    <!-- Button container now only has the confirm button -->
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-      <!-- Return button -->
-      <com.google.android.material.button.MaterialButton
-          android:id="@+id/buttonReturn"
-          android:layout_width="0dp"
-          android:layout_height="60dp"
-          android:layout_weight="1"
-          android:layout_marginEnd="8dp"
-          android:backgroundTint="#F0D687"
-          android:text="Return"
-          android:textAllCaps="false"
-          android:textColor="#2E3B5B"
-          android:textSize="16sp"
-          android:letterSpacing="0.03"
-          app:cornerRadius="12dp"
-          app:elevation="4dp"
-          app:icon="@android:drawable/ic_menu_revert"
-          app:iconGravity="textStart"
-          app:iconPadding="8dp"
-          app:iconTint="#2E3B5B" />
-
-      <!-- Confirm button -->
+      <!-- Confirm button (full width now) -->
       <com.google.android.material.button.MaterialButton
           android:id="@+id/buttonConfirm"
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_height="60dp"
-          android:layout_weight="1"
-          android:layout_marginStart="8dp"
           android:backgroundTint="#2E3B5B"
           android:text="Confirm"
           android:textAllCaps="false"

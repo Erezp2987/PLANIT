@@ -42,21 +42,30 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"/>
 
-    <!-- Suggestions Button - Medium blue -->
-    <Button
-        android:id="@+id/btnTripSuggestions"
-        android:layout_width="0dp"
+    <!-- Return Button - Placed beneath the header -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonReturn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Trip Suggestions"
-        android:textColor="#ffffff"
-        android:backgroundTint="#3f517d"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="100dp"
-        android:padding="16dp"
-        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:backgroundTint="#F0D687"
+        android:text="Return"
+        android:textAllCaps="false"
+        android:textColor="#2E3B5B"
+        android:textSize="14sp"
+        android:minHeight="40dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:letterSpacing="0.03"
+        app:cornerRadius="8dp"
+        app:icon="@android:drawable/ic_menu_revert"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconSize="18dp"
+        app:iconTint="#2E3B5B"
         app:layout_constraintTop_toBottomOf="@id/headerBackground"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Trip Name EditText - Gold accent -->
     <EditText
@@ -70,8 +79,8 @@
         android:padding="16dp"
         android:textSize="16sp"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/btnTripSuggestions"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonReturn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
