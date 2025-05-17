@@ -1,10 +1,12 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.erez_p.helper.LoginPreference;
 import com.erez_p.model.Activities;
 import com.erez_p.model.FinalFlight;
 import com.erez_p.model.Flights;
@@ -42,6 +45,7 @@ import java.util.Iterator;
 public class Home_Screen extends BaseActivity {
 
     private FloatingActionButton newTrip;
+    private Button btnLogOut;
     private RecyclerView tripRV;
     private TripAdapter adapter;
     private TripsViewModel viewModel;
@@ -55,6 +59,7 @@ public class Home_Screen extends BaseActivity {
     private Activities userActivities;
     private Flights userFlights;
     private Hotels userHotels;
+    private LoginPreference loginPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +84,7 @@ public class Home_Screen extends BaseActivity {
         Intent intent = getIntent();
         userId = intent.getStringExtra("idUser");
         userEmail = intent.getStringExtra("userEmail");
+        btnLogOut = findViewById(R.id.btnLogout);
     }
 
     @Override
@@ -91,6 +97,19 @@ public class Home_Screen extends BaseActivity {
                     intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
+            }
+        });
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginPreference = new LoginPreference(Home_Screen.this);
+                if(loginPreference.getEmail() != null && loginPreference.getPassword() != null)
+                {
+                   loginPreference.clearLoginCredentials();
+                }
+                finish();
+                Intent intent = new Intent(Home_Screen.this, Login_Activity.class);
+                startActivity(intent);
             }
         });
     }

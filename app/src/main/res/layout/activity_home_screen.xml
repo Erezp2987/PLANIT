@@ -45,6 +45,33 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"/>
 
+    <!-- Logout Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:icon="@drawable/ic_logout"
+        app:iconTint="#FFFFFF"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:cornerRadius="20dp"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="1dp"
+        android:backgroundTint="#3F517D"
+        app:rippleColor="#8497BF"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="140dp"
+        android:layout_marginStart="16dp"/>
+
     <!-- RecyclerView for Trips -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTrips"
