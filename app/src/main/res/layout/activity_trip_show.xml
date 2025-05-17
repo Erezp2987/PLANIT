@@ -225,6 +225,18 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:id="@+id/btnViewAlbum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#3f517d"
+                android:text="View Album"
+                android:textColor="#ffffff"
+                android:drawableStart="@android:drawable/ic_menu_gallery"
+                android:paddingHorizontal="16dp" />
+
         </LinearLayout>
     </ScrollView>
 

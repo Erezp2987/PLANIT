@@ -71,6 +71,7 @@ public class Trip_Show_Activity extends BaseActivity {
     private Activities activities;
     private Trip Usertrip;
     private String departureDate, returnDate;
+    private Button btnTripPictures;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,10 +104,19 @@ public class Trip_Show_Activity extends BaseActivity {
         btnAddFlight = findViewById(R.id.btnAddFlight);
         btnAddHotel = findViewById(R.id.btnAddHotel);
         btnAddActivity = findViewById(R.id.btnAddActivity);
+        btnTripPictures = findViewById(R.id.btnViewAlbum);
     }
 
     @Override
     protected void setListeners() {
+        btnTripPictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Trip_Show_Activity.this, Album_Activity.class);
+                intent.putExtra("tripId", tripId);
+                startActivity(intent);
+            }
+        });
         tvDepartureDate.setOnClickListener(v -> showDatePickerDialog(true));
         tvReturnDate.setOnClickListener(v -> showDatePickerDialog(false));
 

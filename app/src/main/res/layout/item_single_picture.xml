@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#F6E5B4"
+    android:padding="16dp">
+
+    <!-- Top gradient section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/navy_gradient"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:contentDescription="Image"
+            android:background="@android:color/white"
+            android:padding="4dp"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:clipToOutline="true" />
+    </LinearLayout>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#2E3B5B"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+</LinearLayout>

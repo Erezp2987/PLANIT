@@ -35,6 +35,7 @@ import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.ActivitiesViewModel;
 import com.erez_p.viewmodel.FlightViewModel;
 import com.erez_p.viewmodel.HotelViewModel;
+import com.erez_p.viewmodel.TripPictureViewModel;
 import com.erez_p.viewmodel.TripsViewModel;
 import com.erez_p.viewmodel.UsersViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -60,6 +61,7 @@ public class Home_Screen extends BaseActivity {
     private Flights userFlights;
     private Hotels userHotels;
     private LoginPreference loginPreference;
+    private TripPictureViewModel tripPictureViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +123,7 @@ public class Home_Screen extends BaseActivity {
         hotelViewModel = new ViewModelProvider(Home_Screen.this).get(HotelViewModel.class);
         usersViewModel = new ViewModelProvider(Home_Screen.this).get(UsersViewModel.class);
         viewModel = new ViewModelProvider(Home_Screen.this).get(TripsViewModel.class);
+        tripPictureViewModel = new ViewModelProvider(Home_Screen.this).get(TripPictureViewModel.class);
         viewModel.getTripsByUserID(userId);
         viewModel.getLiveDataCollection().observe(Home_Screen.this, new Observer<Trips>() {
             @Override
@@ -175,26 +178,6 @@ public class Home_Screen extends BaseActivity {
                 ));
         tripRV.setAdapter(adapter);
         tripRV.setLayoutManager(new LinearLayoutManager(this));
-
-        SwipeConfig config = new SwipeConfig();
-        config.rightBackgroundColor= Color.BLUE;
-        config.leftBackgroundColor=Color.RED;
-        config.rightText = "Edit";
-        config.leftText = "Delete";
-        SwipeCallback<Trip> swipeCallback = new SwipeCallback<>(adapter, this, config);
-        adapter.setOnItemSwipeListener(new GenericAdapter.OnItemSwipeListener<Trip>() {
-
-            //EDIT TRIP HERE
-            @Override
-            public void onItemSwipeRight(Trip item, int position)
-            {
-
-            }
-            @Override
-            public void onItemSwipeLeft(Trip item, int position) {
-
-            }
-        });
         adapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<Trip>() {
             @Override
             public void onItemClick(Trip item, int position) {
@@ -222,6 +205,7 @@ public class Home_Screen extends BaseActivity {
                                 activitiesViewModel.getActivitiesByTripID(item.getIdFs());
                                 flightsViewModel.getFlightByTripID(item.getIdFs());
                                 hotelViewModel.getHotelByTripId(item.getIdFs());
+                                tripPictureViewModel.getTripPicturesByTripID(item.getIdFs());
                                 // מחיקה לא עובדת של אטרקציה
                                 activitiesViewModel.getLiveDataCollection().observe(Home_Screen.this, activities -> {
                                     if (activities != null) {
@@ -243,6 +227,13 @@ public class Home_Screen extends BaseActivity {
                                     if (hotels != null) {
                                         for (int i = 0; i < hotels.size(); i++) {
                                             hotelViewModel.delete(hotels.get(i));
+                                        }
+                                    }
+                                });
+                                tripPictureViewModel.getLiveDataCollection().observe(Home_Screen.this, tripPictures -> {;
+                                    if (tripPictures != null) {
+                                        for (int i = 0; i < tripPictures.size(); i++) {
+                                            tripPictureViewModel.delete(tripPictures.get(i));
                                         }
                                     }
                                 });
