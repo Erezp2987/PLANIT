@@ -62,6 +62,7 @@ public class Home_Screen extends BaseActivity {
     private Hotels userHotels;
     private LoginPreference loginPreference;
     private TripPictureViewModel tripPictureViewModel;
+    private Button btnEditUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class Home_Screen extends BaseActivity {
         userId = intent.getStringExtra("idUser");
         userEmail = intent.getStringExtra("userEmail");
         btnLogOut = findViewById(R.id.btnLogout);
+        btnEditUser = findViewById(R.id.btnEditUser);
     }
 
     @Override
@@ -111,6 +113,14 @@ public class Home_Screen extends BaseActivity {
                 }
                 finish();
                 Intent intent = new Intent(Home_Screen.this, Login_Activity.class);
+                startActivity(intent);
+            }
+        });
+        btnEditUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Screen.this, Register_Activity.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

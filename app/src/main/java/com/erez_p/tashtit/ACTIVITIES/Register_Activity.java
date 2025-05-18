@@ -5,13 +5,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.erez_p.helper.LoginPreference;
 import com.erez_p.viewmodel.UsersViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.erez_p.helper.inputValidators.EmailRule;
@@ -27,7 +30,10 @@ public class Register_Activity extends BaseActivity {
     private TextInputEditText name, email, password;
     private Button register, login;
     private UsersViewModel viewModel;
-    private boolean isParentBoolean = false;
+    private String userId;
+    private User userEdit;
+    private LoginPreference loginPreference;
+    private TextView loginPromptTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +46,9 @@ public class Register_Activity extends BaseActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        setViewModel();
         initializeViews();
         setPasswordValidaitor();
-        setViewModel();
         setListeners();
     }
 
@@ -52,8 +57,15 @@ public class Register_Activity extends BaseActivity {
         name = findViewById(R.id.nameEditText);
         email = findViewById(R.id.emailRegEditText);
         password = findViewById(R.id.passwordRegEditText);
+        loginPromptTextView = findViewById(R.id.registerTitleTextView);
         register = findViewById(R.id.registerButton);
         login = findViewById(R.id.loginPromptTextView);
+        userId = getIntent().getStringExtra("userId");
+        if(userId != null) {
+            viewModel.getUserById(userId);
+            register.setText("Update");
+            loginPromptTextView.setText("Update your details");
+        }
     }
 
     @Override
@@ -66,8 +78,20 @@ public class Register_Activity extends BaseActivity {
                 {
                     if(Validator.validate())
                     {
-                        User NewUser = new User(name.getText().toString(),email.getText().toString(),password.getText().toString());
-                        viewModel.add(NewUser);
+                        if(userId==null) {
+                            User NewUser = new User(name.getText().toString(), email.getText().toString(), password.getText().toString());
+                            viewModel.add(NewUser);
+                        }
+                        else{
+                            userEdit.setUserEmail(email.getText().toString());
+                            userEdit.setUserName(name.getText().toString());
+                            userEdit.setUserPassword(password.getText().toString());
+                            viewModel.save(userEdit);
+                            loginPreference = new LoginPreference(Register_Activity.this);
+                            if(loginPreference!= null) {
+                                loginPreference.saveLoginCredentials(email.getText().toString(), password.getText().toString());
+                            }
+                        }
                         finish();
                     }
                 }
@@ -86,7 +110,17 @@ public class Register_Activity extends BaseActivity {
     @Override
     protected void setViewModel() {
         viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
-        viewModel.getAll();
+        viewModel.getLiveDataEntity().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                 userEdit= user;
+                if(userEdit != null) {
+                    name.setText(userEdit.getUserName());
+                    email.setText(userEdit.getUserEmail());
+                    password.setText(userEdit.getUserPassword());
+                }
+            }
+        });
     }
 
     protected void setPasswordValidaitor(){
