@@ -4,6 +4,7 @@ import static android.app.ProgressDialog.show;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -267,6 +268,14 @@ public class Trip_Show_Activity extends BaseActivity {
                 return false;
             }
         });
+        flightsAdapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<FinalFlight>() {
+            @Override
+            public void onItemClick(FinalFlight item, int position) {
+                String url = "https://www.google.com/search?q=" + item.getAirline() + "+" + item.getFlightNumber() + "+flight+status";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
         rvFlights.setAdapter(flightsAdapter);
         rvFlights.setLayoutManager(new LinearLayoutManager(this));
         hotelsAdapter = new FinalHotelAdapter(hotels , R.layout.hotel_item_layout, holder -> {
@@ -293,6 +302,14 @@ public class Trip_Show_Activity extends BaseActivity {
                         })
                         .show();
                 return false;
+            }
+        });
+        hotelsAdapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<FinalHotel>() {
+            @Override
+            public void onItemClick(FinalHotel item, int position) {
+                String url = "https://www.google.com/maps?q=" + item.getLatitude() + "," + item.getLongtitude();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
             }
         });
         rvHotels.setAdapter(hotelsAdapter);
