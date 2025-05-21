@@ -72,7 +72,7 @@ public class Start_Trip_Activity extends BaseActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tripName.getText().toString()!="" && tripDateDeparture.getText().toString()!="" && tripDateReturn.getText().toString()!="") {
+                if (!tripName.getText().toString().equals("") && !tripDateDeparture.getText().toString().equals("") && !tripDateReturn.getText().toString().equals("")) {
                     Intent intentFromLastActivity = getIntent();
                     String userId = intentFromLastActivity.getStringExtra("userId");
                     Intent intent = new Intent(Start_Trip_Activity.this, Trip_Plan_Activity.class);
