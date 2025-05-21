@@ -57,11 +57,11 @@ public class ActivityAddition_Activity extends BaseActivity {
     @Override
     protected void setListeners() {
         confirmButton.setOnClickListener(v -> {
-            if(AName.getText().toString()!=""&&
-                    Aprice.getText().toString()!=""&&
-                    Adate.getText().toString()!=""&&
-                    Atime.getText().toString()!=""&&
-                    Aduration.getText().toString()!="") {
+            if(!AName.getText().toString().equals("")&&
+                    !Aprice.getText().toString().equals("")&&
+                    !Adate.getText().toString().equals("")&&
+                    !Atime.getText().toString().equals("")&&
+                    !Aduration.getText().toString().equals("")) {
                 String name = AName.getText().toString();
                 double price = Double.parseDouble(Aprice.getText().toString());
                 String date = Adate.getText().toString();
