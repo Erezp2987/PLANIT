@@ -1,10 +1,7 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.erez_p.helper.LoginPreference;
 import com.erez_p.model.Activities;
-import com.erez_p.model.FinalFlight;
 import com.erez_p.model.Flights;
 import com.erez_p.model.Hotels;
 import com.erez_p.model.Trip;
@@ -28,8 +24,6 @@ import com.erez_p.model.Trips;
 import com.erez_p.model.User;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
-import com.erez_p.tashtit.ADPTERS.BASE.SwipeCallback;
-import com.erez_p.tashtit.ADPTERS.BASE.SwipeConfig;
 import com.erez_p.tashtit.ADPTERS.TripAdapter;
 import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.ActivitiesViewModel;
@@ -40,8 +34,6 @@ import com.erez_p.viewmodel.TripsViewModel;
 import com.erez_p.viewmodel.UsersViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Iterator;
 
 public class Home_Screen extends BaseActivity {
 

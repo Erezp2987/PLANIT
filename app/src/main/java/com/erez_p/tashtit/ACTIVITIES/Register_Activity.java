@@ -3,8 +3,6 @@ package com.erez_p.tashtit.ACTIVITIES;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;

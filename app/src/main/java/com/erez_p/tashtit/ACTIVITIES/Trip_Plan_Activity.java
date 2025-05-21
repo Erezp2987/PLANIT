@@ -1,14 +1,10 @@
 package com.erez_p.tashtit.ACTIVITIES;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -18,18 +14,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.erez_p.model.Flight;
-import com.erez_p.model.GeminiManager;
-import com.erez_p.model.HotelItem;
-import com.erez_p.model.ResponseCallback;
-import com.erez_p.model.Trip;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.R;
-import com.erez_p.viewmodel.TripsViewModel;
-
-import java.util.Calendar;
 
 public class Trip_Plan_Activity extends BaseActivity {
     private Button confirm, returnBack, chooseFlight, chooseHotel, chooseActivity;

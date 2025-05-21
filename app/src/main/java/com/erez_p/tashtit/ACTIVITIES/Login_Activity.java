@@ -10,10 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.erez_p.helper.LoginPreference;
-import com.erez_p.model.GeminiManager;
-import com.erez_p.model.ResponseCallback;
 import com.erez_p.model.User;
-import com.erez_p.model.Users;
 import com.erez_p.viewmodel.UsersViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.erez_p.tashtit.R;
@@ -26,9 +23,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
-
-import java.lang.annotation.Documented;
-import java.util.List;
 
 public class Login_Activity extends BaseActivity {
     private TextInputEditText email,password;

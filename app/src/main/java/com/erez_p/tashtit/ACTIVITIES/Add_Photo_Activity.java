@@ -2,10 +2,7 @@ package com.erez_p.tashtit.ACTIVITIES;
 
 import static android.app.PendingIntent.getActivity;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -28,8 +24,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -37,9 +31,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.erez_p.helper.AlertUtil;
 import com.erez_p.helper.BitMapHelper;
-import com.erez_p.helper.Global;
 import com.erez_p.model.TripPicture;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.R;
