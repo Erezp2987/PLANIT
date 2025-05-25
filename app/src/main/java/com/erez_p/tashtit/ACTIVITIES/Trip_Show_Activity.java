@@ -155,17 +155,21 @@ public class Trip_Show_Activity extends BaseActivity {
             public void onClick(View v) {
                 //כאן תשמור את השינויים בטיול
                 //את השמירה של הנתונים שהשתננו כמו שם תאריך יציאה ותאריך חזרהתוסיף
-                if(!Usertrip.getName().equals(tvTripName.getText().toString().trim())) {
-                    Usertrip.setName(tvTripName.getText().toString().trim());
+                if (!Usertrip.getName().equals("")) {
+                    if (!Usertrip.getName().equals(tvTripName.getText().toString().trim())) {
+                        Usertrip.setName(tvTripName.getText().toString().trim());
+                    }
+                    if (!Usertrip.getDateDeparture().equals(tvDepartureDate.getText().toString().trim())) {
+                        Usertrip.setDateDeparture(tvDepartureDate.getText().toString().trim());
+                    }
+                    if (!Usertrip.getDateReturn().equals(tvReturnDate.getText().toString().trim())) {
+                        Usertrip.setDateReturn(tvReturnDate.getText().toString().trim());
+                    }
+                    tripViewModel.save(Usertrip);
+                    finish();
+                } else {
+                    Toast.makeText(Trip_Show_Activity.this, "Please fill in the trip name", Toast.LENGTH_SHORT).show();
                 }
-                if(!Usertrip.getDateDeparture().equals( tvDepartureDate.getText().toString().trim())) {
-                    Usertrip.setDateDeparture(tvDepartureDate.getText().toString().trim());
-                }
-                if(!Usertrip.getDateReturn().equals( tvReturnDate.getText().toString().trim())) {
-                    Usertrip.setDateReturn(tvReturnDate.getText().toString().trim());
-                }
-                tripViewModel.save(Usertrip);
-                finish();
             }
         });
     }
