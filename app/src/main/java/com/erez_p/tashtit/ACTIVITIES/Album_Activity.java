@@ -25,6 +25,7 @@ import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
 import com.erez_p.tashtit.ADPTERS.TripPictureAdapter;
 import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.TripPictureViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class Album_Activity extends BaseActivity {
     private ImageButton returnButton;
@@ -70,9 +71,21 @@ public class Album_Activity extends BaseActivity {
         adapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<TripPicture>() {
             @Override
             public boolean onItemLongClick(TripPicture item, int position) {
-                viewModel.delete(item);
-                tripPictures.remove(item);
-                adapter.notifyItemRemoved(position);
+                new MaterialAlertDialogBuilder(Album_Activity.this)
+                        .setMessage("Delete "+ " ?")
+                        .setIcon(R.drawable.trashcan)
+                        .setCancelable(true)
+                        .setTitle("Delete")
+                        .setNegativeButton("No", (dialog, which) -> {
+                            // Do nothing
+                        })
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            viewModel.delete(item);
+                            tripPictures.remove(item);
+                            adapter.notifyItemRemoved(position);
+                        })
+                        .show();
+
                 return false;
             }
         });
