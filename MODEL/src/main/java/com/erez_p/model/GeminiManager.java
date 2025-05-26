@@ -72,37 +72,4 @@ public class GeminiManager
         }, executor);
     }
 
-
-    public void getResponseWithImage(String query, Bitmap image, ResponseCallback callback) {
-        GenerativeModelFutures model = getModel();
-
-
-        Part imagePart = new ImagePart(image);
-
-
-        Content content = new Content.Builder()
-                .addText(query)
-                .addPart(imagePart)
-                .build();
-
-        Executor executor = Runnable::run;
-
-        ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
-        Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
-            @Override
-            public void onSuccess(GenerateContentResponse generateContentResponse) {
-                String result = generateContentResponse.getText();
-                callback.onResponse(result);
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                throwable.printStackTrace();
-                callback.onError(throwable);
-            }
-        }, executor);
-    }
-
-
-
 }
