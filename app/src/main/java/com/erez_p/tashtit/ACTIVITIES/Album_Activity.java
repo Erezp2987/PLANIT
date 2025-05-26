@@ -89,6 +89,15 @@ public class Album_Activity extends BaseActivity {
                 return false;
             }
         });
+        adapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<TripPicture>() {
+            @Override
+            public void onItemClick(TripPicture item, int position) {
+                Intent intent = new Intent(Album_Activity.this, Add_Photo_Activity.class);
+                intent.putExtra("tripId", tripId);
+                intent.putExtra("tripPictureId", item.getIdFs());
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erez_p.helper.BitMapHelper;
@@ -50,11 +51,11 @@ public class Add_Photo_Activity extends BaseActivity {
     private String photo;
     private static final int CAMERA_REQUEST = 1888;
     private static final int GALLERY_REQUEST = 1889;
-    Boolean bol=false;
-    int count=0;
     private ActivityResultLauncher<Void> cameraLanucher;
     private ActivityResultLauncher<Intent> galleryLauncher;
     private Bitmap picture;
+    private String tripPictureId;
+    private TripPicture currenttripPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,8 @@ public class Add_Photo_Activity extends BaseActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        initializeViews();
         setViewModel();
+        initializeViews();
         setLaunchers();
         setListeners();
     }
@@ -75,10 +76,15 @@ public class Add_Photo_Activity extends BaseActivity {
     @Override
     protected void initializeViews() {
         tripId = getIntent().getStringExtra("tripId");
+        tripPictureId = getIntent().getStringExtra("tripPictureId");
         ivPhoto = findViewById(R.id.imagePreview);
         cancelButton = findViewById(R.id.btnReturn);
         confirmButton = findViewById(R.id.btnConfirm);
         descriptionEditText = findViewById(R.id.etPhotoDescription);
+        if(tripPictureId!=null){
+            viewModel.getTripPicturesByTripPictureID(tripPictureId);
+
+        }
     }
 
     @Override
@@ -118,7 +124,14 @@ public class Add_Photo_Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(photo!=null) {
-                    viewModel.add(new TripPicture(tripId, photo,descriptionEditText.getText().toString() ));
+                    if(tripPictureId!=null){
+                        currenttripPicture.setPictureUrl(photo);
+                        currenttripPicture.setDescription(descriptionEditText.getText().toString().trim());
+                        viewModel.update(currenttripPicture);
+                    }
+                    else {
+                        viewModel.add(new TripPicture(tripId, photo, descriptionEditText.getText().toString().trim()));
+                    }
                     finish();
                 }
             }
@@ -127,6 +140,17 @@ public class Add_Photo_Activity extends BaseActivity {
     @Override
     protected void setViewModel() {
         viewModel = new ViewModelProvider(this).get(TripPictureViewModel.class);
+        viewModel.getLiveDataEntity().observe(this, new Observer<TripPicture>() {
+            @Override
+            public void onChanged(TripPicture tripPicture) {
+                if (tripPicture != null) {
+                    ivPhoto.setImageBitmap(BitMapHelper.decodeBase64(tripPicture.getPictureUrl()));
+                    descriptionEditText.setText(tripPicture.getDescription());
+                    photo = tripPicture.getPictureUrl();
+                    currenttripPicture = tripPicture;
+                }
+            }
+        });
     }
     private void checkCameraPermissionAndLaunch() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

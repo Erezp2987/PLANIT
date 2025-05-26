@@ -24,4 +24,12 @@ public class TripPicture extends BaseEntity {
     public String getDescription() {
         return description;
     }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

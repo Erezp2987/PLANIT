@@ -22,4 +22,7 @@ public class TripPictureViewModel extends BaseViewModel<TripPicture, TripPicture
     public void getTripPicturesByTripID(String tripID) {
         getAll(repository.getCollection().whereEqualTo("tripId", tripID));
     }
+    public void getTripPicturesByTripPictureID(String tripPictureID) {
+        get(repository.getCollection().whereEqualTo("idFs", tripPictureID));
+    }
 }
