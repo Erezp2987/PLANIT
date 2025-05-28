@@ -50,151 +50,146 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:strokeColor="#3F517D"
+            app:strokeWidth="1dp">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp"
-                app:strokeColor="#3F517D"
-                app:strokeWidth="1dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_marginBottom="8dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_mylocation"
+                    app:boxStrokeColor="#3F517D"
+                    app:hintTextColor="#2E3B5B"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fromInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        app:startIconDrawable="@android:drawable/ic_menu_mylocation"
-                        app:boxStrokeColor="#3F517D"
-                        app:hintTextColor="#2E3B5B"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        android:hint="From Airport"
+                        android:textColor="#2E3B5B"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/fromInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="From Airport"
-                            android:textColor="#2E3B5B"
-                            android:inputType="text" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <!-- RecyclerView for "From" input suggestions -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fromRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="#FFFFFF"
+                    android:visibility="gone"
+                    android:layout_marginBottom="8dp"
+                    android:nestedScrollingEnabled="true"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:cardCornerRadius="4dp"
+                    android:elevation="2dp" />
 
-                    <!-- New RecyclerView for "From" input suggestions -->
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/fromRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="#FFFFFF"
-                        android:visibility="gone"
-                        android:layout_marginBottom="8dp"
-                        android:nestedScrollingEnabled="false"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:cardCornerRadius="4dp"
-                        android:elevation="2dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_compass"
+                    app:boxStrokeColor="#3F517D"
+                    app:hintTextColor="#2E3B5B"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        app:startIconDrawable="@android:drawable/ic_menu_compass"
-                        app:boxStrokeColor="#3F517D"
-                        app:hintTextColor="#2E3B5B"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/toInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="To Airport"
-                            android:textColor="#2E3B5B"
-                            android:inputType="text" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <!-- New RecyclerView for "To" input suggestions -->
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/toRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:background="#FFFFFF"
-                        android:visibility="gone"
-                        android:layout_marginBottom="8dp"
-                        android:nestedScrollingEnabled="false"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:cardCornerRadius="4dp"
-                        android:elevation="2dp" />
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/toInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-                        app:boxStrokeColor="#3F517D"
-                        app:hintTextColor="#2E3B5B"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        android:hint="To Airport"
+                        android:textColor="#2E3B5B"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/dateInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Departure Date"
-                            android:textColor="#2E3B5B"
-                            android:inputType="date" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <!-- RecyclerView for "To" input suggestions -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/toRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="#FFFFFF"
+                    android:visibility="gone"
+                    android:layout_marginBottom="8dp"
+                    android:nestedScrollingEnabled="true"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:cardCornerRadius="4dp"
+                    android:elevation="2dp" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/searchButton"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
+                    app:boxStrokeColor="#3F517D"
+                    app:hintTextColor="#2E3B5B"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateInput"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:text="Search Flights"
-                        android:textAllCaps="false"
-                        android:layout_marginTop="16dp"
-                        app:cornerRadius="8dp"
-                        app:icon="@android:drawable/ic_menu_search"
-                        app:iconGravity="textStart"
-                        android:textSize="16sp"
-                        android:backgroundTint="#2E3B5B"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:layout_height="wrap_content"
+                        android:hint="Departure Date"
+                        android:textColor="#2E3B5B"
+                        android:inputType="date" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/resultsLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Flight Results"
-                android:textColor="#2E3B5B"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/searchButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Search Flights"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="16dp"
+                    app:cornerRadius="8dp"
+                    app:icon="@android:drawable/ic_menu_search"
+                    app:iconGravity="textStart"
+                    android:textSize="16sp"
+                    android:backgroundTint="#2E3B5B"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:overScrollMode="never"
-                android:nestedScrollingEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:background="#FFFFFF"
-                android:layout_marginBottom="16dp"/>
+        <TextView
+            android:id="@+id/resultsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flight Results"
+            android:textColor="#2E3B5B"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        <!-- Main flights RecyclerView - now scrollable -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:background="#FFFFFF"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"/>
+
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
