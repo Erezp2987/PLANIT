@@ -47,7 +47,10 @@ import com.erez_p.viewmodel.HotelViewModel;
 import com.erez_p.viewmodel.TripsViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Trip_Show_Activity extends BaseActivity {
     private EditText tvTripName,
@@ -328,7 +331,7 @@ public class Trip_Show_Activity extends BaseActivity {
             ((TextView) holder.getView("activityName")).setText(activity.getActivityName());
             ((TextView) holder.getView("activityPrice")).setText("$" + activity.getActivityPrice());
             ((TextView) holder.getView("activityDate")).setText(activity.getActivityDate());
-            ((TextView) holder.getView("activityTime")).setText(""+activity.getActivityTime());
+            ((TextView) holder.getView("activityTime")).setText(longToTimeString(activity.getActivityTime()));
             ((TextView) holder.getView("activityDuration")).setText("" + activity.getActivityDuration() + " hours");
         });
         activitiesAdapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<Activity>() {
@@ -399,7 +402,11 @@ public class Trip_Show_Activity extends BaseActivity {
     );
 
 
-
+    public static String longToTimeString(long timeInMillis) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        Date date = new Date(timeInMillis);
+        return sdf.format(date);
+    }
 
 
 
