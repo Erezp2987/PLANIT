@@ -8,8 +8,7 @@ import androidx.security.crypto.MasterKeys;
 
 public class LoginPreference {
     private static final String PREF_NAME = "LoginPrefs";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_IDFS = "idFs";
 
     private SharedPreferences sharedPreferences;
     private Context context;
@@ -31,25 +30,19 @@ public class LoginPreference {
         }
     }
 
-    public void saveLoginCredentials(String email, String password) {
+    public void saveLoginCredentials(String idfs) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_PASSWORD, password);
+        editor.putString(KEY_IDFS, idfs);
         editor.apply();
     }
 
-    public String getEmail() {
-        return sharedPreferences.getString(KEY_EMAIL, null);
-    }
-
-    public String getPassword() {
-        return sharedPreferences.getString(KEY_PASSWORD, null);
+    public String getIdfs() {
+        return sharedPreferences.getString(KEY_IDFS, null);
     }
 
     public void clearLoginCredentials() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove(KEY_EMAIL);
-        editor.remove(KEY_PASSWORD);
+        editor.remove(KEY_IDFS);
         editor.apply();
     }
 }

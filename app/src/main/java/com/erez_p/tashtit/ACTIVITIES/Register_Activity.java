@@ -86,8 +86,8 @@ public class Register_Activity extends BaseActivity {
                             userEdit.setUserPassword(password.getText().toString());
                             viewModel.save(userEdit);
                             loginPreference = new LoginPreference(Register_Activity.this);
-                            if(loginPreference!= null) {
-                                loginPreference.saveLoginCredentials(email.getText().toString(), password.getText().toString());
+                            if(loginPreference.getIdfs()!= null) {
+                                loginPreference.saveLoginCredentials(userId);
                             }
                         }
                         finish();

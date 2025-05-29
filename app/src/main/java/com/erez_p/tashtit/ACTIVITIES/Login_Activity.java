@@ -30,6 +30,7 @@ public class Login_Activity extends BaseActivity {
     private User userEntered;
     private UsersViewModel viewModel;
     private CheckBox rememberMe;
+    private boolean isChecked1;
     private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,13 @@ public class Login_Activity extends BaseActivity {
         logIn = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerviewChange);
         rememberMe = findViewById(R.id.rememberMeCheckBox);
+        isChecked1 = false;
         LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
-        if(loginPreference.getEmail() != null && loginPreference.getPassword() != null)
+        if(loginPreference.getIdfs() != null)
         {
-            email.setText(loginPreference.getEmail());
-            password.setText(loginPreference.getPassword());
-            rememberMe.setChecked(true);
-            viewModel.getUserByEmail(loginPreference.getEmail());
-
+            Intent intent = new Intent(Login_Activity.this, Home_Screen.class);
+            intent.putExtra("idUser", loginPreference.getIdfs());
+            startActivity(intent);
         }
         else
         {
@@ -102,16 +102,18 @@ public class Login_Activity extends BaseActivity {
                 if(isChecked)
                 {
                     //save email and password
-                    String emailInput = email.getText().toString().trim(); // Get user input
-                    String passwordInput = password.getText().toString().trim(); // Get user input
-                    LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
-                    loginPreference.saveLoginCredentials(emailInput, passwordInput);
+                    //String emailInput = email.getText().toString().trim(); // Get user input
+                    //String passwordInput = password.getText().toString().trim(); // Get user input
+                    //LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
+                    //loginPreference.saveLoginCredentials(emailInput, passwordInput);
+                    isChecked1 =true;
                 }
                 else
                 {
                     //clear email and password
-                    LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
-                    loginPreference.clearLoginCredentials();
+                    //LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
+                    //loginPreference.clearLoginCredentials();
+                    isChecked1 = false;
                 }
             }
         });
@@ -132,9 +134,13 @@ public class Login_Activity extends BaseActivity {
                             userEntered=user;
                             if(userEntered.getUserPassword().equals(password.getText().toString().trim()))
                             {
+                                if(isChecked1)
+                                {
+                                    LoginPreference loginPreference = new LoginPreference(Login_Activity.this);
+                                    loginPreference.saveLoginCredentials(userEntered.getIdFs());
+                                }
                                 Intent intent = new Intent(Login_Activity.this, Home_Screen.class);
                                 intent.putExtra("idUser", userEntered.getIdFs());
-                                intent.putExtra("userEmail", userEntered.getUserEmail());
                                 startActivity(intent);
                             }
                             else

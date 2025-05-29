@@ -42,7 +42,7 @@ public class Home_Screen extends BaseActivity {
     private RecyclerView tripRV;
     private TripAdapter adapter;
     private TripsViewModel viewModel;
-    private String userId, userEmail;
+    private String userId;
     private ActivitiesViewModel activitiesViewModel;
     private FlightViewModel flightsViewModel;
     private HotelViewModel hotelViewModel;
@@ -78,7 +78,6 @@ public class Home_Screen extends BaseActivity {
         tripRV = findViewById(R.id.rvTrips);
         Intent intent = getIntent();
         userId = intent.getStringExtra("idUser");
-        userEmail = intent.getStringExtra("userEmail");
         btnLogOut = findViewById(R.id.btnLogout);
         btnEditUser = findViewById(R.id.btnEditUser);
     }
@@ -99,7 +98,7 @@ public class Home_Screen extends BaseActivity {
             @Override
             public void onClick(View v) {
                 loginPreference = new LoginPreference(Home_Screen.this);
-                if(loginPreference.getEmail() != null && loginPreference.getPassword() != null)
+                if(loginPreference.getIdfs() != null)
                 {
                    loginPreference.clearLoginCredentials();
                 }
