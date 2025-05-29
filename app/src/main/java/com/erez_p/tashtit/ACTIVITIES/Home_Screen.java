@@ -173,8 +173,8 @@ public class Home_Screen extends BaseActivity {
                 },
                 (((holder, item, position) -> {
                     ((TextView)holder.getView("nameTrip")).setText(item.getName());
-                    ((TextView)holder.getView("departureDateTrip")).setText(""+item.getDateDeparture());
-                    ((TextView)holder.getView("returnDateTrip")).setText(""+item.getDateReturn());
+                    ((TextView)holder.getView("departureDateTrip")).setText("Departure: "+item.getDateDeparture());
+                    ((TextView)holder.getView("returnDateTrip")).setText("Return: "+item.getDateReturn());
                 })
 
                 ));

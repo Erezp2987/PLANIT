@@ -332,7 +332,7 @@ public class Trip_Show_Activity extends BaseActivity {
             ((TextView) holder.getView("activityPrice")).setText("$" + activity.getActivityPrice());
             ((TextView) holder.getView("activityDate")).setText(activity.getActivityDate());
             ((TextView) holder.getView("activityTime")).setText(longToTimeString(activity.getActivityTime()));
-            ((TextView) holder.getView("activityDuration")).setText("" + activity.getActivityDuration() + " hours");
+            ((TextView) holder.getView("activityDuration")).setText("" + activity.getActivityDuration() + " minutes");
         });
         activitiesAdapter.setOnItemLongClickListener(new GenericAdapter.OnItemLongClickListener<Activity>() {
             @Override
