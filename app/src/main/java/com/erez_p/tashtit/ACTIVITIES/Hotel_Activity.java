@@ -146,14 +146,17 @@ public class Hotel_Activity extends BaseActivity {
                 String url = "https://www.google.com/maps?q=" + item.getLatitude() + "," + item.getLongtitude();
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
-
             }
 
             @Override
             public void onItemSwipeLeft(HotelItem item, int position) {
+            }
+        });
+        adapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<HotelItem>() {
+            @Override
+            public void onItemClick(HotelItem item, int position) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getLink()));
                 startActivity(browserIntent);
-
             }
         });
         recyclerViewHotels.setAdapter(adapter);

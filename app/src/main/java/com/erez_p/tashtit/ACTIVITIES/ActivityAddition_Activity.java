@@ -11,6 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erez_p.model.Activity;
@@ -25,6 +26,8 @@ public class ActivityAddition_Activity extends BaseActivity {
     private ActivitiesViewModel viewModel;
     private EditText AName,Aprice,Adate,Atime,Aduration;
     private Button returnButton, confirmButton;
+    private String activityID;
+    private Activity currentActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class ActivityAddition_Activity extends BaseActivity {
     @Override
     protected void initializeViews() {
         tripID = getIntent().getStringExtra("tripId");
+        activityID = getIntent().getStringExtra("activityId");
         AName = findViewById(R.id.editTextActivityName);
         Aprice = findViewById(R.id.editTextActivityPrice);
         Adate = findViewById(R.id.editTextActivityDate);
@@ -67,10 +71,20 @@ public class ActivityAddition_Activity extends BaseActivity {
                 String date = Adate.getText().toString();
                 long time = Long.parseLong(Atime.getText().toString());
                 long duration = Long.parseLong(Aduration.getText().toString());
-                viewModel.add(new Activity(tripID, name, price, date, time, duration));
-                Intent intent = new Intent(ActivityAddition_Activity.this, Trip_Plan_Activity.class);
-                intent.putExtra("Activity", name);
-                setResult(300,intent);
+                if (activityID == null) {
+                    viewModel.add(new Activity(tripID, name, price, date, time, duration));
+                    Intent intent = new Intent(ActivityAddition_Activity.this, Trip_Plan_Activity.class);
+                    intent.putExtra("Activity", name);
+                    setResult(300, intent);
+                }
+                else {
+                    currentActivity.setActivityDate(date);
+                    currentActivity.setActivityDuration(duration);
+                    currentActivity.setActivityName(name);
+                    currentActivity.setActivityTime(time);
+                    currentActivity.setActivityPrice(price);
+                    viewModel.update(currentActivity);
+                }
                 finish();
             }
             else {
@@ -85,7 +99,21 @@ public class ActivityAddition_Activity extends BaseActivity {
     @Override
     protected void setViewModel() {
         viewModel = new ViewModelProvider(this).get(ActivitiesViewModel.class);
-        viewModel.getAll();
+        if(activityID!=null)
+        {
+            viewModel.getActivityByActivityId(activityID);
+            viewModel.getLiveDataEntity().observe(this, new Observer<Activity>() {
+                @Override
+                public void onChanged(Activity activity) {
+                    currentActivity = activity;
+                    AName.setText(currentActivity.getActivityName());
+                    Adate.setText(currentActivity.getActivityDate());
+                    Aduration.setText(currentActivity.getActivityDuration()+"");
+                    Aprice.setText(currentActivity.getActivityPrice()+"");
+                    Atime.setText(currentActivity.getActivityTime()+"");
+                }
+            });
+        }
     }
 
     private void showDatePickerDialog(EditText targetEditText) {

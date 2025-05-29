@@ -350,6 +350,15 @@ public class Trip_Show_Activity extends BaseActivity {
                 return false;
             }
         });
+        activitiesAdapter.setOnItemClickListener(new GenericAdapter.OnItemClickListener<Activity>() {
+            @Override
+            public void onItemClick(Activity item, int position) {
+                Intent intent = new Intent(Trip_Show_Activity.this,ActivityAddition_Activity.class);
+                intent.putExtra("tripId",tripId);
+                intent.putExtra("activityId",item.getIdFs());
+                startActivity(intent);
+            }
+        });
         rvActivities.setAdapter(activitiesAdapter);
         rvActivities.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -363,7 +372,7 @@ public class Trip_Show_Activity extends BaseActivity {
                         Intent intent = result.getData();
                         String hotelname = intent.getStringExtra("HotelItem");
                         if (hotelname != null) {
-                            Toast.makeText( Trip_Show_Activity.this, hotelname + "added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText( Trip_Show_Activity.this, hotelname + " added", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if(result.getResultCode() == 100)
@@ -372,7 +381,7 @@ public class Trip_Show_Activity extends BaseActivity {
                         Intent intent = result.getData();
                         String flightname = intent.getStringExtra("Flight");
                         if (flightname != null) {
-                            Toast.makeText( Trip_Show_Activity.this, flightname + "added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText( Trip_Show_Activity.this, flightname + " added", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if(result.getResultCode() == 300)
@@ -382,7 +391,7 @@ public class Trip_Show_Activity extends BaseActivity {
                         String Activityname = intent.getStringExtra("Activity");
                         if (Activityname != null) {
 
-                            Toast.makeText( Trip_Show_Activity.this, Activityname + "added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText( Trip_Show_Activity.this, Activityname + " added", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
