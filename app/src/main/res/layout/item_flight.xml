@@ -85,6 +85,6 @@ android:layout_height="wrap_content"
 android:text="$250"
 android:textSize="18sp"
 android:textStyle="bold"
-android:textColor="#eac65a"
+android:textColor="#2E3B5B"
     android:layout_marginStart="12dp"/>
     </LinearLayout>
