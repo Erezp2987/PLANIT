@@ -3,6 +3,7 @@ package com.erez_p.tashtit.ACTIVITIES;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +25,8 @@ import com.erez_p.repository.RetrofitClient;
 import com.erez_p.repository.SerpApiService;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
+import com.erez_p.tashtit.ADPTERS.BASE.SwipeCallback;
+import com.erez_p.tashtit.ADPTERS.BASE.SwipeConfig;
 import com.erez_p.tashtit.ADPTERS.HotelAdapter;
 import com.erez_p.tashtit.R;
 import com.erez_p.viewmodel.HotelViewModel;
@@ -146,6 +150,7 @@ public class Hotel_Activity extends BaseActivity {
                 String url = "https://www.google.com/maps?q=" + item.getLatitude() + "," + item.getLongtitude();
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -161,6 +166,15 @@ public class Hotel_Activity extends BaseActivity {
         });
         recyclerViewHotels.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        SwipeConfig config = new SwipeConfig();
+        config.rightText = "View Map";
+        config.leftText = "Action";
+        config.rightBackgroundColor = Color.BLUE;
+
+        SwipeCallback<HotelItem> swipeCallback = new SwipeCallback<>(adapter, this, config, ItemTouchHelper.RIGHT);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerViewHotels);
 
         SerpApiService service = RetrofitClient.getService();
         Call<HotelResponse> call = service.getHotels("google_hotels", query, checkIn, checkOut, adults, maxPrice, "13", "e6030086b12c1c7c7fda68d5768fb563c679da80726e596b079e03ba0473c929");
