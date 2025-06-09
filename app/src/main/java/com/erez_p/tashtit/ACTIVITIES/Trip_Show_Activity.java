@@ -4,6 +4,7 @@ import static android.app.ProgressDialog.show;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,8 @@ import com.erez_p.model.Trip;
 import com.erez_p.tashtit.ACTIVITIES.BASE.BaseActivity;
 import com.erez_p.tashtit.ADPTERS.ActivitiesAdapter;
 import com.erez_p.tashtit.ADPTERS.BASE.GenericAdapter;
+import com.erez_p.tashtit.ADPTERS.BASE.SwipeCallback;
+import com.erez_p.tashtit.ADPTERS.BASE.SwipeConfig;
 import com.erez_p.tashtit.ADPTERS.FinalFlightAdapter;
 import com.erez_p.tashtit.ADPTERS.FinalHotelAdapter;
 import com.erez_p.tashtit.R;
@@ -318,8 +322,31 @@ public class Trip_Show_Activity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        hotelsAdapter.setOnItemSwipeListener(new GenericAdapter.OnItemSwipeListener<FinalHotel>() {
+            @Override
+            public void onItemSwipeRight(FinalHotel item, int position) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getLink()));
+                startActivity(browserIntent);
+                hotelsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onItemSwipeLeft(FinalHotel item, int position) {
+
+            }
+        });
+        SwipeConfig config = new SwipeConfig();
+        config.rightText = "View Hotel Website";
+        config.leftText = "Action";
+        config.rightBackgroundColor = Color.BLUE;
+
+        SwipeCallback<FinalHotel> swipeCallback = new SwipeCallback<>(hotelsAdapter, this, config, ItemTouchHelper.RIGHT);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeCallback);
+        itemTouchHelper.attachToRecyclerView(rvHotels);
         rvHotels.setAdapter(hotelsAdapter);
         rvHotels.setLayoutManager(new LinearLayoutManager(this));
+
         //צריך להכין אדפטר לאטרקציות ו לייאווט לאטרקציה
         activitiesAdapter = new ActivitiesAdapter(activities, R.layout.activity_item_layout, holder -> {
             holder.putView("activityName", holder.itemView.findViewById(R.id.activity_name));
